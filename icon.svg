@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#173d56"/>
+      <stop offset="100%" stop-color="#168b91"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <g fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Sound waves / Speech & Hearing icon -->
+    <path d="M150 196a68 68 0 0 1 136 0c0 46-54 68-54 112"/>
+    <circle cx="218" cy="356" r="6" fill="#ffffff"/>
+    <path d="M326 178a95 95 0 0 1 0 156"/>
+    <path d="M368 140a148 148 0 0 1 0 232"/>
+  </g>
+</svg>
