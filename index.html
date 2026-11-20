@@ -662,12 +662,12 @@
  </div>
 </div>
 </header>
-<div class="layout"><aside class="side"><div class="side-header"><b>MÓDULOS CLÍNICOS</b><button aria-expanded="false" class="btn mobile-nav-toggle no-print" id="mobileNavToggle" onclick="toggleMobileNavGrid()" type="button">☰ Módulos</button></div><nav id="nav"><button class="active" data-tab="identificacion">01 · Identificación</button><button data-tab="consentimiento">02 · Consentimiento</button><button data-tab="anamnesis">03 · Anamnesis</button><button data-tab="catalogo">04 · Catálogo de instrumentos</button><button data-tab="tamizaje">05 · Tamizaje</button><button data-tab="evaluacion">06 · Evaluación</button><button data-tab="plan">07 · Diagnóstico y plan</button><button data-tab="evoluciones">08 · Evoluciones</button><button data-tab="cierre">09 · Cierre y PDF</button></nav><div class="hint">Completa solo los apartados pertinentes. Los puntos verdes indican módulos con datos registrados.</div></aside><main>
+<div class="layout" id="mainLayout"><aside class="side" id="clinicalSidebar"><div class="side-header"><b>MÓDULOS CLÍNICOS</b><button aria-expanded="true" class="btn mobile-nav-toggle no-print" id="mobileNavToggle" onclick="toggleMobileNavGrid()" type="button">✕ Ocultar</button></div><nav id="nav"><button class="active" data-tab="identificacion">01 · Identificación</button><button data-tab="consentimiento">02 · Consentimiento</button><button data-tab="anamnesis">03 · Anamnesis</button><button data-tab="catalogo">04 · Catálogo de instrumentos</button><button data-tab="tamizaje">05 · Tamizaje</button><button data-tab="evaluacion">06 · Evaluación</button><button data-tab="plan">07 · Diagnóstico y plan</button><button data-tab="evoluciones">08 · Evoluciones</button><button data-tab="cierre">09 · Cierre y PDF</button></nav><div class="hint">Completa solo los apartados pertinentes. Los puntos verdes indican módulos con datos registrados.</div></aside><main>
 <div class="toolbar"><div class="toolbar-search no-print"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="quickFieldFilter" oninput="filterCurrentPanelFields(this.value)" placeholder="Buscar campo o apartado en este módulo…" type="search"/></div><div class="toolbar-actions"><button class="btn" onclick="exportBackupJson()" title="Descargar copia de seguridad del paciente en archivo .json" type="button">💾 Guardar</button><button class="btn" onclick="document.getElementById('restoreFileInput').click()" title="Cargar archivo .json previamente guardado" type="button">📂 Cargar</button><input accept=".json" hidden="" id="restoreFileInput" onchange="importBackupJson(event)" type="file"/><button class="btn btn-subtle-danger" onclick="clearForm()" type="button">🗑️ Limpiar</button><button class="btn" onclick="printCurrent()" type="button">🖨️ Imprimir módulo</button><button class="btn primary" onclick="printAll()" type="button">📄 PDF consolidado</button></div></div>
 <section class="panel active" id="identificacion"><h2>REGISTRO DE HISTORIA CLÍNICA FONOAUDIOLÓGICA</h2><div class="sub">Identificación del usuario</div><p class="intro">Datos administrativos y contexto de atención. La información se comparte entre los módulos mientras esta página permanezca abierta.</p><div class="sub">Datos personales</div><div class="grid three">
 <div class="field"><label>Nombres y apellidos</label><input data-share="nombre"/></div><div class="field"><label>Tipo de documento</label><select data-share="tipo" id="documentType" onchange="updatePediatricFields()"><option></option><option>RC</option><option>TI</option><option>CC</option><option>CE</option><option>PPT</option><option>Pasaporte</option><option>Otro</option></select></div><div class="field"><label>Número de documento</label><input data-share="doc"/></div><div class="field full"><div class="checks"><label><input id="pediatricOverride" onchange="updatePediatricFields()" type="checkbox"/> Paciente menor de edad con documento diferente de RC/TI: mostrar antecedentes pediátricos</label></div></div>
 <div class="field"><label>Fecha de nacimiento</label><input id="nacimiento" oninput="age()" type="date"/></div><div class="field"><label>Edad calculada</label><input id="edad" readonly=""/></div><div class="field"><label>Sexo (si pertinente)</label><select><option></option><option>Femenino</option><option>Masculino</option><option>Intersexual</option><option>No informa</option></select></div><div class="field"><label>Identidad de género (opcional)</label><input/></div><div class="field"><label>Escolaridad</label><select><option value="">Seleccione</option><option>Sin escolaridad</option><option>Preescolar</option><option>Primaria incompleta</option><option>Primaria completa</option><option>Secundaria incompleta</option><option>Bachillerato completo</option><option>Técnico</option><option>Tecnológico</option><option>Universitario</option><option>Posgrado</option><option>No aplica</option><option>No informa</option></select></div><div class="field"><label>Ocupación / actividad habitual</label><select><option value="">Seleccione</option><option>Estudiante</option><option>Empleado(a)</option><option>Independiente</option><option>Labores del hogar</option><option>Cuidador(a)</option><option>Pensionado(a)</option><option>Desempleado(a)</option><option>Primera infancia / no aplica</option><option>Otra</option></select></div><div class="field"><label>EPS / aseguradora</label><select data-share="eps"><option value="">Seleccione EPS / aseguradora</option><option>Aliansalud</option><option>Asmet Salud</option><option>Capital Salud</option><option>Compensar</option><option>Coosalud</option><option>Famisanar</option><option>Salud Total</option><option>Sanitas</option><option>Savia Salud</option><option>Servicio Occidental de Salud (SOS)</option><option>Nueva EPS</option><option>Salud Mía</option><option>Fondo Nacional de Salud de las Personas Privadas de la Libertad</option><option>Régimen especial / excepción</option><option>Particular</option><option>No asegurado</option><option>Otra</option></select></div><div class="field"><label>Régimen</label><select><option></option><option>Contributivo</option><option>Subsidiado</option><option>Especial / excepción</option><option>No asegurado</option><option>Otro</option></select></div><div class="field"><label>Fecha de apertura / valoración</label><input type="date"/></div></div>
-<div class="sub">Ubicación y contacto</div><div class="grid three"><div class="field"><label>Departamento</label><select><option value="">Seleccione departamento</option><option>Amazonas</option><option>Antioquia</option><option>Arauca</option><option>Atlántico</option><option>Bogotá D. C.</option><option>Bolívar</option><option>Boyacá</option><option>Caldas</option><option>Caquetá</option><option>Casanare</option><option>Cauca</option><option>Cesar</option><option>Chocó</option><option>Córdoba</option><option>Cundinamarca</option><option>Guainía</option><option>Guaviare</option><option>Huila</option><option>La Guajira</option><option>Magdalena</option><option>Meta</option><option>Nariño</option><option>Norte de Santander</option><option>Putumayo</option><option>Quindío</option><option>Risaralda</option><option>San Andrés, Providencia y Santa Catalina</option><option>Santander</option><option>Sucre</option><option>Tolima</option><option>Valle del Cauca</option><option>Vaupés</option><option>Vichada</option></select></div><div class="field"><label>Municipio</label><input list="municipiosColombia" placeholder="Escriba o seleccione municipio"/><datalist id="municipiosColombia"><option>Bogotá</option><option>Villahermosa</option><option>Ibagué</option><option>Manizales</option><option>Medellín</option><option>Cali</option><option>Soacha</option><option>Fresno</option><option>Líbano</option><option>Casabianca</option><option>Murillo</option><option>Honda</option><option>Armero Guayabal</option></datalist></div><div class="field"><label>Zona</label><select><option></option><option>Urbana</option><option>Rural</option></select></div><div class="field"><label>Barrio / vereda / sector / finca</label><input/></div><div class="field"><label>Dirección / referencia</label><input/></div><div class="field"><label>Teléfono</label><input/></div><div class="field"><label>Correo (opcional)</label><input type="email"/></div><div class="field"><label>Medio de contacto autorizado</label><select><option></option><option>Llamada</option><option>WhatsApp</option><option>Correo</option><option>Otro</option></select></div><div class="field"><label>Modalidad</label><div class="checks"><label><input type="checkbox"/> Consulta externa</label><label><input type="checkbox"/> Domiciliaria</label><label><input type="checkbox"/> Hospitalización</label><label><input type="checkbox"/> Brigada</label><label><input type="checkbox"/> Telesalud</label><label><input type="checkbox"/> Escolar / institucional</label></div></div></div>
+<div class="sub">Ubicación y contacto</div><div class="grid three"><div class="field"><label>Departamento (seleccione primero)</label><select data-share="departamento" id="departamentoSelect" onchange="handleDepartamentoChange(this.value)"><option value="">1.º Seleccione departamento</option><option>Amazonas</option><option>Antioquia</option><option>Arauca</option><option>Atlántico</option><option>Bogotá D. C.</option><option>Bolívar</option><option>Boyacá</option><option>Caldas</option><option>Caquetá</option><option>Casanare</option><option>Cauca</option><option>Cesar</option><option>Chocó</option><option>Córdoba</option><option>Cundinamarca</option><option>Guainía</option><option>Guaviare</option><option>Huila</option><option>La Guajira</option><option>Magdalena</option><option>Meta</option><option>Nariño</option><option>Norte de Santander</option><option>Putumayo</option><option>Quindío</option><option>Risaralda</option><option>San Andrés, Providencia y Santa Catalina</option><option>Santander</option><option>Sucre</option><option>Tolima</option><option>Valle del Cauca</option><option>Vaupés</option><option>Vichada</option></select></div><div class="field"><label>Municipio</label><select data-share="municipio" disabled="" id="municipioSelect" onchange="handleMunicipioChange(this.value)"><option value="">Primero seleccione un departamento</option></select></div><div class="field"><label>Zona</label><select data-share="zona"><option></option><option>Urbana</option><option>Rural</option></select></div><div class="field"><label>Barrio / vereda / sector / finca</label><input data-share="barrio"/></div><div class="field"><label>Dirección / referencia</label><input data-share="direccion"/></div><div class="field"><label>Teléfono</label><input data-share="telefono"/></div><div class="field"><label>Correo (opcional)</label><input data-share="correo" type="email"/></div><div class="field"><label>Medio de contacto autorizado</label><select><option></option><option>Llamada</option><option>WhatsApp</option><option>Correo</option><option>Otro</option></select></div><div class="field"><label>Modalidad</label><div class="checks" id="identModalidadChecks"><label><input type="checkbox" value="Consulta externa"/> Consulta externa</label><label><input type="checkbox" value="Domiciliaria"/> Domiciliaria</label><label><input type="checkbox" value="Hospitalización"/> Hospitalización</label><label><input type="checkbox" value="Brigada"/> Brigada</label><label><input type="checkbox" value="Telesalud"/> Telesalud</label><label><input type="checkbox" value="Escolar / institucional"/> Escolar / institucional</label></div></div></div>
 <div class="sub">Acompañante, responsable e informante</div><div class="grid"><div class="field"><label>Nombre del acompañante / responsable</label><input data-share="responsableNombre"/></div><div class="field"><label>Parentesco / vínculo / calidad legal</label><select data-share="responsableCalidad"><option value="">Seleccione</option><option>Madre</option><option>Padre</option><option>Hijo(a)</option><option>Hermano(a)</option><option>Abuelo(a)</option><option>Cónyuge / pareja</option><option>Cuidador(a)</option><option>Representante legal</option><option>Persona de apoyo</option><option>Otro familiar</option><option>Otro</option></select></div><div class="field"><label>Documento del acompañante / responsable</label><input data-share="responsableDocumento"/></div><div class="field"><label>Teléfono de contacto</label><input type="tel"/></div><div class="field"><label>Informante principal</label><select><option value="">Seleccione</option><option>Usuario</option><option>Madre / padre</option><option>Cuidador(a)</option><option>Familiar</option><option>Representante legal / persona de apoyo</option><option>Historia clínica / remisión</option><option>Otro</option></select></div></div></section>
 <section class="panel" id="consentimiento">
 <h2>CONSENTIMIENTO INFORMADO PARA EVALUACIÓN E INTERVENCIÓN FONOAUDIOLÓGICA</h2>
@@ -2268,7 +2268,42 @@ function getPatientData(){
  const ageText=val('#edad');
  const epsField=[...document.querySelectorAll('#identificacion .field')].find(f=>f.querySelector('label')?.textContent.includes('EPS / aseguradora'));
  const eps=val('#identificacion [data-share="eps"]')||epsField?.querySelector('select,input')?.value?.trim()||'';
- return {name,type,doc,dob,ageText,eps};
+ const respName=val('#identificacion [data-share="responsableNombre"]');
+ const respRel=val('#identificacion [data-share="responsableCalidad"]');
+ const respDoc=val('#identificacion [data-share="responsableDocumento"]');
+ const guardian=[respName,respRel?`(${respRel})`:'',respDoc?`Doc: ${respDoc}`:''].filter(Boolean).join(' · ');
+ const informant=[respName,respRel?`(${respRel})`:''].filter(Boolean).join(' ')||name||'';
+ const depto=val('#departamentoSelect');
+ const mpio=val('#municipioSelect');
+
+ // Inferir modalidad seleccionada en Identificación, Consentimiento o Plan
+ let modality='';
+ const planMod=val('#planModality');
+ const consMod=val('#consentModality');
+ const identMods=[...document.querySelectorAll('#identModalidadChecks input:checked')].map(x=>x.value);
+ const rawMod=planMod||identMods[0]||consMod||'';
+ if(/domicili/i.test(rawMod)) modality='Atención domiciliaria';
+ else if(/externa|presencial/i.test(rawMod)) modality='Consulta externa';
+ else if(/hospital/i.test(rawMod)) modality='Hospitalización';
+ else if(/brigada|jornada/i.test(rawMod)) modality='Brigada / jornada extramural';
+ else if(/telemedicina no interactiva/i.test(rawMod)) modality='Telemedicina no interactiva (TMNI)';
+ else if(/asesor[ií]a virtual/i.test(rawMod)) modality='Asesoría virtual (ASRV)';
+ else if(/tele/i.test(rawMod)) modality='Telemedicina interactiva (TMI)';
+ else if(/escolar|educativ|institucional/i.test(rawMod)) modality='Contexto escolar / institucional';
+
+ // Inferir duración desde Plan si existe
+ let duration='';
+ const planDur=val('#planSessionDuration');
+ if(planDur.includes('20–30')) duration='30 minutos';
+ else if(planDur.includes('30–45')) duration='45 minutos';
+ else if(planDur.includes('45–60')) duration='60 minutos';
+ else if(planDur.includes('60 minutos o más')) duration='Más de 60 minutos';
+ else if(planDur.includes('Variable')) duration='Variable / no aplica';
+
+ // Signos vitales registrados en Tamizaje
+ const tamVitals=document.querySelector('#tamizaje input[placeholder*="SpO"]')?.value?.trim()||'';
+
+ return {name,type,doc,dob,ageText,eps,respName,respRel,respDoc,guardian,informant,depto,mpio,modality,duration,tamVitals};
 }
 
 
@@ -2367,11 +2402,14 @@ function updateDxDomainSummary(){
 function addEvolution(){
  const e=document.createElement('article');e.className='evolution';
  const patient=getPatientData();
+ const sessionNum=(document.querySelectorAll('#evolutionList .evolution').length||0)+1;
  const today=new Date();const localDate=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);
  const options=(arr,first='Seleccione')=>'<option value="">'+first+'</option>'+arr.map(x=>'<option>'+x+'</option>').join('');
  const checks=(arr,group)=>arr.map(x=>`<label><input type="checkbox" data-ev-check="${group}" value="${x}"> ${x}</label>`).join('');
  e.innerHTML=`
- <div class="ev-head"><div><h3>Registro de evolución fonoaudiológica</h3><p class="muted">Ficha independiente por sesión. Completa los componentes pertinentes y genera un borrador editable antes de firmar.</p></div>
+ <div class="ev-head">
+  <div><h3>Registro de evolución fonoaudiológica · Sesión ${sessionNum}</h3><p class="muted">Los datos del paciente, acudiente, modalidad, áreas evaluadas y objetivos del plan se sincronizan automáticamente desde los módulos previos.</p></div>
+  <div class="actions no-print"><button class="btn primary" type="button" onclick="copyEvolutionPatient(this,true)">⚡ Traer todos los datos previos de la historia</button></div>
  </div>
  <div class="sub">1. Identificación del paciente</div>
  <div class="grid three ev-patient">
@@ -2381,7 +2419,7 @@ function addEvolution(){
  <div class="field"><label>Fecha de nacimiento</label><input type="date" data-ev-field="Fecha de nacimiento" class="ev-dob" value="${escapeAttr(patient.dob)}"></div>
  <div class="field"><label>Edad</label><input data-ev-field="Edad" class="ev-age" value="${escapeAttr(patient.ageText)}" placeholder="Años / meses"></div>
  <div class="field"><label>EPS / aseguradora</label><input data-ev-field="EPS / aseguradora" class="ev-eps" value="${escapeAttr(patient.eps)}"></div>
- <div class="field full"><label>Acudiente / responsable (si aplica)</label><input data-ev-field="Acudiente / responsable" class="ev-guardian"></div>
+ <div class="field full"><label>Acudiente / responsable (si aplica)</label><input data-ev-field="Acudiente / responsable" class="ev-guardian" value="${escapeAttr(patient.guardian)}"></div>
  </div>
  <div class="sub">2. Condición al ingreso y estado general</div>
  <div class="field full"><div class="checks">${checks(['Alerta y disponible para la interacción','Alerta con colaboración variable','Somnolencia / fatiga','Inquietud / irritabilidad','Comprensión de consignas funcionales conservada','Comprensión / seguimiento de consignas inconsistente','Requiere apoyos para la participación','Se identifican condiciones que limitan la sesión'], 'ingreso')}</div></div>
@@ -2389,10 +2427,10 @@ function addEvolution(){
  <div class="grid three">
  <div class="field"><label>Fecha de atención</label><input type="date" data-ev-field="Fecha de atención" value="${localDate}"></div>
  <div class="field"><label>Hora de inicio</label><input type="time" data-ev-field="Hora de inicio"></div>
- <div class="field"><label>Duración</label><select data-ev-field="Duración">${options(['20 minutos','30 minutos','40 minutos','45 minutos','50 minutos','60 minutos','Más de 60 minutos','Variable / no aplica'])}</select></div>
- <div class="field"><label>N.º de sesión / visita</label><input data-ev-field="Número de sesión" placeholder="Ej. 1 de 12"></div>
+ <div class="field"><label>Duración</label><select data-ev-field="Duración" class="ev-duration">${options(['20 minutos','30 minutos','40 minutos','45 minutos','50 minutos','60 minutos','Más de 60 minutos','Variable / no aplica'])}</select></div>
+ <div class="field"><label>N.º de sesión / visita</label><input data-ev-field="Número de sesión" class="ev-session-num" value="Sesión ${sessionNum}" placeholder="Ej. 1 de 12"></div>
  <div class="field"><label>Modalidad</label><select data-ev-field="Modalidad" class="ev-modality" onchange="toggleEvolutionModality(this)">${options(['Consulta externa','Atención domiciliaria','Hospitalización','Brigada / jornada extramural','Telemedicina interactiva (TMI)','Telemedicina no interactiva (TMNI)','Asesoría virtual (ASRV)','Contexto escolar / institucional','Otra'])}</select></div>
- <div class="field"><label>Tipo de atención</label><select data-ev-field="Tipo de atención">${options(['Intervención terapéutica','Seguimiento','Control','Revaloración','Valoración inicial','Orientación / entrenamiento a cuidador','Educación / asesoría','Procedimiento suspendido'])}</select></div>
+ <div class="field"><label>Tipo de atención</label><select data-ev-field="Tipo de atención" class="ev-attention-type">${options(['Intervención terapéutica','Seguimiento','Control','Revaloración','Valoración inicial','Orientación / entrenamiento a cuidador','Educación / asesoría','Procedimiento suspendido'])}</select></div>
  <div class="field"><label>Profesional responsable</label><input data-ev-field="Profesional responsable" value="Karen Liseth Rico Vargas"></div>
  <div class="field"><label>Profesión</label><input data-ev-field="Profesión" value="Fonoaudióloga EBS"></div>
  <div class="field"><label>Tarjeta profesional</label><input data-ev-field="Registro profesional" value="T.P. 08261"></div>
@@ -2400,7 +2438,7 @@ function addEvolution(){
  <div class="field"><label>Institución / servicio</label><input data-ev-field="Servicio / institución" value="Hospital Ismael Perdomo · Villahermosa, Tolima"></div>
  <div class="field full ev-home-bio" hidden><label>Bioseguridad y condiciones de atención domiciliaria</label><select data-ev-field="Bioseguridad domiciliaria">${options(['Se realiza lavado de manos y uso de bata institucional; se cumplen protocolos institucionales de bioseguridad','Se realiza higiene de manos; uso de elementos de protección según riesgo y protocolo institucional','Condiciones especiales / describir en observaciones','No aplica'])}</select></div>
  </div>
- <div class="sub">3. Área(s), objetivos y foco de la sesión</div>
+ <div class="sub">4. Área(s), objetivos y foco de la sesión</div>
  <div class="field full"><label>Áreas y subáreas abordadas</label><p class="muted">Selecciona únicamente los componentes trabajados durante esta sesión. Los objetivos se filtrarán según esta selección.</p><div class="ev-area-groups">${renderEvolutionAreaOptions()}</div></div>
  <div class="grid">
  <div class="field full"><label>Banco de objetivos sugeridos según áreas y subáreas</label>
@@ -2408,13 +2446,13 @@ function addEvolution(){
  <div class="ev-objective-suggestions" aria-live="polite"><p class="muted">Selecciona una o varias subáreas para consultar objetivos relacionados.</p></div>
  <button class="btn ev-add-goals" type="button" onclick="addSelectedEvolutionGoals(this)">Añadir objetivos seleccionados a esta sesión</button>
  </div>
- <div class="field full"><label>Objetivos priorizados de esta sesión (puedes incluir varios; editable)</label><textarea data-ev-field="Objetivos terapéuticos" class="ev-selected-goals" placeholder="Los objetivos que añadas desde el banco aparecerán aquí. También puedes escribir o modificar objetivos directamente, incluso si no existe un plan de intervención previo."></textarea></div>
+ <div class="field full"><label>Objetivos priorizados de esta sesión (puedes incluir varios; editable)</label><textarea data-ev-field="Objetivos terapéuticos" class="ev-selected-goals" placeholder="Los objetivos formulados en 07 · Plan o los que añadas desde el banco aparecerán aquí automáticamente."></textarea></div>
  <div class="field"><label>Objetivo tomado del plan individual (opcional)</label><select data-ev-field="Objetivo del plan" class="ev-plan-objective"><option value="">Cargar objetivos del plan…</option></select></div>
  <div class="field"><label>Foco / prioridad de la sesión</label><select data-ev-field="Prioridad de sesión"><option value="">Seleccione</option><option>Objetivo principal</option><option>Objetivos complementarios</option><option>Mantenimiento / generalización</option><option>Seguimiento / reevaluación</option><option>Orientación a usuario o cuidador</option></select></div>
  <div class="field full"><label>Objetivo específico de esta sesión (opcional, editable)</label><textarea data-ev-field="Objetivo específico de la sesión" placeholder="Si necesitas precisar qué se busca lograr hoy, mediante qué estrategia y con qué finalidad funcional, escríbelo aquí."></textarea></div>
 
- <div class="field"><label>Signos vitales (si aplica)</label><input data-ev-field="Signos vitales" placeholder="SpO₂ %, FC lpm, FR rpm, TA mmHg, temperatura…"></div>
- <div class="field"><label>Acompañante / informante</label><input data-ev-field="Acompañante / informante"></div>
+ <div class="field"><label>Signos vitales (si aplica)</label><input data-ev-field="Signos vitales" class="ev-vitals" value="${escapeAttr(patient.tamVitals)}" placeholder="SpO₂ %, FC lpm, FR rpm, TA mmHg, temperatura…"></div>
+ <div class="field"><label>Acompañante / informante</label><input data-ev-field="Acompañante / informante" class="ev-informant" value="${escapeAttr(patient.informant)}"></div>
  <div class="field"><label>Adherencia al plan / práctica en casa</label><select data-ev-field="Adherencia">${options(['Adecuada / constante','Parcial','Baja','No se realizó práctica','No indagada','No aplica'])}</select></div>
  <div class="field"><label>Fuente de información</label><select data-ev-field="Fuente de información">${options(['Observación clínica directa','Reporte del usuario','Reporte de familiar / cuidador','Registro institucional / historia clínica','Combinación de fuentes'])}</select></div>
  </div>
@@ -2436,27 +2474,31 @@ function addEvolution(){
  <div class="field full"><label>Respuesta del usuario y observaciones objetivas</label><textarea class="big" data-ev-field="Respuesta y observaciones" placeholder="Aciertos, errores, latencia, tipo de ayuda, autocorrección, fatiga, conducta, respuesta a estímulos, ejemplos literales…"></textarea></div>
  <div class="field full"><label>Tolerancia, seguridad y signos clínicos observados (si aplica)</label><textarea data-ev-field="Tolerancia y seguridad" placeholder="Tolerancia a la actividad, signos respiratorios, cambios de voz, tos, fatiga, dolor, SpO₂ u otros parámetros relevantes; registrar ausencia solo si fue observada…"></textarea></div>
  </div>
- <div class="sub">6. Análisis clínico, logros y conducta</div>
+ <div class="sub">7. Análisis clínico, logros y conducta</div>
  <div class="grid">
  <div class="field full"><label>Análisis clínico frente a la línea base y los objetivos</label><textarea class="big" data-ev-field="Análisis clínico" placeholder="Interpreta el desempeño de esta sesión en relación con el objetivo, apoyos requeridos, consistencia, generalización y cambios observados. Evita atribuir progreso sin comparación documentada…"></textarea></div>
  <div class="field full"><label>Logros / avances identificados</label><textarea data-ev-field="Logros" placeholder="Habilidades demostradas, respuestas emergentes, mayor autonomía, estrategias eficaces…"></textarea></div>
  <div class="field full"><label>Dificultades, barreras y factores facilitadores</label><textarea data-ev-field="Dificultades y facilitadores" placeholder="Factores del usuario, tarea, entorno, interlocutor, salud, adherencia o disponibilidad de apoyos…"></textarea></div>
- <div class="field full"><label>Recomendaciones, plan casero y acuerdos</label><textarea data-ev-field="Recomendaciones y acuerdos" placeholder="Indicaciones concretas, frecuencia, responsable, condiciones de práctica y precauciones…"></textarea></div>
- <div class="field full"><label>Remisiones / comunicación interdisciplinaria (si aplica)</label><textarea data-ev-field="Remisiones e interconsultas" placeholder="Servicio / profesional, motivo, prioridad y gestión realizada…"></textarea></div>
+ <div class="field full"><label>Recomendaciones, plan casero y acuerdos</label><textarea data-ev-field="Recomendaciones y acuerdos" class="ev-recommendations" placeholder="Indicaciones concretas, frecuencia, responsable, condiciones de práctica y precauciones…"></textarea></div>
+ <div class="field full"><label>Remisiones / comunicación interdisciplinaria (si aplica)</label><textarea data-ev-field="Remisiones e interconsultas" class="ev-referrals" placeholder="Servicio / profesional, motivo, prioridad y gestión realizada…"></textarea></div>
  <div class="field full"><label>Plan para próxima sesión</label><textarea data-ev-field="Plan próxima sesión" placeholder="Continuidad, progresión, modificación de apoyos, reevaluación o conducta pendiente…"></textarea></div>
  </div>
  <div class="sub">Profesional responsable</div>
  <div class="field full"><label>Evolución generada</label><textarea class="big ev-generated" data-ev-field="Evolución narrativa" placeholder="Selecciona «Generar evolución». El texto resultante será editable y podrás ajustarlo antes de firmar." style="min-height:260px"></textarea></div>
  <div class="actions no-print ev-bottom-actions">
- <button class="btn" type="button" onclick="copyEvolutionPatient(this,true)">Actualizar identificación desde módulo 01</button>
+ <button class="btn" type="button" onclick="copyEvolutionPatient(this,true)">⚡ Actualizar desde Identificación, Evaluación y Plan</button>
  <button class="btn primary" type="button" onclick="generateEvolutionDraft(this)">Generar evolución</button>
  <button class="btn" type="button" onclick="printEvolution(this)">Imprimir esta evolución</button>
  <button class="btn danger" type="button" onclick="this.closest('.evolution').remove()">Eliminar ficha</button>
  </div>
 `;
+ // Marcar edición manual únicamente cuando el profesional edita directamente dentro de la ficha de evolución
+ e.querySelectorAll('.ev-name,.ev-type,.ev-doc,.ev-dob,.ev-age,.ev-eps,.ev-guardian,.ev-informant,.ev-modality,.ev-duration,.ev-vitals,.ev-selected-goals,.ev-recommendations,.ev-referrals').forEach(ctrl=>{
+  ctrl.addEventListener('input',()=>{ctrl.dataset.manualEdit='1';});
+  ctrl.addEventListener('change',()=>{ctrl.dataset.manualEdit='1';});
+ });
  document.getElementById('evolutionList').appendChild(e);
- const type=e.querySelector('.ev-type');if(patient.type)type.value=patient.type;
- populateEvolutionPlanObjectives(e);
+ syncEvolutionCardWithClinicalRecord(e, false);
 }
 
 
@@ -2488,21 +2530,92 @@ function addSelectedEvolutionGoals(btn){
  target.dispatchEvent(new Event('input',{bubbles:true}));
 }
 
+function syncEvolutionCardWithClinicalRecord(e, force=false){
+ if(!e)return;
+ const p=getPatientData();
+ const setField=(sel,val)=>{
+  const el=e.querySelector(sel);
+  if(!el||!val)return;
+  if(force||!el.dataset.manualEdit||!el.value.trim()){
+   el.value=val;
+   if(force)delete el.dataset.manualEdit;
+  }
+ };
+ setField('.ev-name',p.name);
+ setField('.ev-type',p.type);
+ setField('.ev-doc',p.doc);
+ setField('.ev-dob',p.dob);
+ setField('.ev-age',p.ageText);
+ setField('.ev-eps',p.eps);
+ setField('.ev-guardian',p.guardian);
+ setField('.ev-informant',p.informant);
+ setField('.ev-vitals',p.tamVitals);
+ setField('.ev-duration',p.duration);
+ if(p.modality){
+  const modEl=e.querySelector('.ev-modality');
+  if(modEl&&(force||!modEl.dataset.manualEdit||!modEl.value)){
+   modEl.value=p.modality;
+   toggleEvolutionModality(modEl);
+  }
+ }
+
+ // Sincronizar objetivos del plan (07 · Plan)
+ populateEvolutionPlanObjectives(e);
+ const specGoals=(document.getElementById('objectiveSpecific')?.value||'').trim();
+ const genGoal=(document.getElementById('objectiveGeneral')?.value||'').trim();
+ const combinedPlanGoals=[specGoals,(!specGoals&&genGoal)?genGoal:''].filter(Boolean).join('\n');
+ if(combinedPlanGoals){
+  setField('.ev-selected-goals',combinedPlanGoals);
+ }
+ const planRecs=(document.getElementById('planRecommendations')?.value||'').trim();
+ if(planRecs) setField('.ev-recommendations',planRecs);
+ const planRefs=(document.getElementById('planReferrals')?.value||'').trim();
+ if(planRefs) setField('.ev-referrals',planRefs);
+
+ // Preseleccionar áreas/subáreas en la evolución si ya fueron marcadas en Tamizaje, Evaluación o Plan
+ const hasAnyEvSubChecked=e.querySelectorAll('[data-ev-subarea]:checked').length>0;
+ if(force||!hasAnyEvSubChecked){
+  const activeAreas=new Set();
+  Object.keys(clinicalSelections?.evaluacion||{}).forEach(a=>activeAreas.add(a));
+  Object.keys(clinicalSelections?.tamizaje||{}).forEach(a=>activeAreas.add(a));
+  document.querySelectorAll('#dxDomainChecks input:checked,#objectiveAreas input:checked').forEach(cb=>activeAreas.add(cb.value));
+
+  const areaMatchers=[
+   {evArea:'Audición',re:/audici/i},
+   {evArea:'Habla',re:/habla|articul|fonol|fluidez/i},
+   {evArea:'Voz',re:/voz|fonatori/i},
+   {evArea:'Motricidad orofacial',re:/orofacial/i},
+   {evArea:'Alimentación y deglución',re:/aliment|degluci/i},
+   {evArea:'Lenguaje',re:/lenguaje|lectura|escritura/i},
+   {evArea:'Comunicación',re:/comunic|pragm|saac|caa|cognici/i}
+  ];
+  const combinedAreaStr=[...activeAreas].join(' | ');
+  let lastTouchedCb=null;
+  areaMatchers.forEach(m=>{
+   if(m.re.test(combinedAreaStr)){
+    const firstSub=e.querySelector(`[data-ev-area="${m.evArea}"]`);
+    if(firstSub&&!firstSub.checked){
+     firstSub.checked=true;
+     lastTouchedCb=firstSub;
+     updateEvolutionDropdownSummary(firstSub.closest('.ev-area-group'));
+    }
+   }
+  });
+  if(lastTouchedCb) updateEvolutionObjectives(lastTouchedCb);
+ }
+}
+
 function copyEvolutionPatient(btn,force=false){
- const e=btn.closest('.evolution'),p=getPatientData();
- const pairs=[['.ev-name',p.name],['.ev-type',p.type],['.ev-doc',p.doc],['.ev-dob',p.dob],['.ev-age',p.ageText],['.ev-eps',p.eps]];
- pairs.forEach(([sel,val])=>{const el=e.querySelector(sel);if(el&&val&&(force||!el.value.trim()))el.value=val;});
+ const e=btn.closest('.evolution');
+ syncEvolutionCardWithClinicalRecord(e,force);
 }
 
 function syncBlankEvolutionIdentifications(){
- const p=getPatientData();
  document.querySelectorAll('#evolutionList .evolution').forEach(e=>{
-  [['.ev-name',p.name],['.ev-type',p.type],['.ev-doc',p.doc],['.ev-dob',p.dob],['.ev-age',p.ageText],['.ev-eps',p.eps]].forEach(([sel,val])=>{
-   const el=e.querySelector(sel);if(el&&val&&!el.value.trim())el.value=val;
-  });
+  syncEvolutionCardWithClinicalRecord(e,false);
  });
 }
-document.querySelectorAll('#identificacion input,#identificacion select,#nacimiento,#edad').forEach(el=>{
+document.querySelectorAll('#identificacion input,#identificacion select,#nacimiento,#edad,#consentModality,#planModality,#planSessionDuration,#objectiveSpecific,#objectiveGeneral,#planRecommendations,#planReferrals').forEach(el=>{
  el.addEventListener('input',syncBlankEvolutionIdentifications);
  el.addEventListener('change',syncBlankEvolutionIdentifications);
 });
@@ -2511,8 +2624,11 @@ function populateEvolutionPlanObjectives(e){
  const current=document.getElementById('objectiveSpecific')?.value||'';
  const general=document.getElementById('objectiveGeneral')?.value||'';
  const vals=[...current.split(/\n+/),...general.split(/\n+/)].map(x=>x.replace(/^\s*(?:\d+[\.\)]|-)\s*/,'').trim()).filter(Boolean);
+ const prevVal=sel.value;
  sel.innerHTML='<option value="">Selecciona un objetivo del plan (opcional)</option>';
  [...new Set(vals)].forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v.length>110?v.slice(0,107)+'…':v;sel.append(o)});
+ if(prevVal&&vals.includes(prevVal))sel.value=prevVal;
+ else if(vals.length===1&&!sel.dataset.manualEdit)sel.value=vals[0];
 }
 function toggleEvolutionModality(sel){
  const e=sel.closest('.evolution');const home=e?.querySelector('.ev-home-bio');
@@ -4100,6 +4216,10 @@ function proposeObjectivesFromEvaluation(){
   grid-template-columns: 265px minmax(0, 1fr);
   gap: 22px;
   padding: 20px 22px 40px;
+  transition: grid-template-columns 0.2s ease;
+ }
+ .layout.layout-menu-collapsed {
+  grid-template-columns: 1fr;
  }
  .side {
   background: var(--surface);
@@ -4110,6 +4230,18 @@ function proposeObjectivesFromEvaluation(){
   position: sticky;
   top: 16px;
   box-shadow: var(--shadow-md);
+ }
+ .side.side-collapsed {
+  padding: 10px 14px;
+ }
+ .side.side-collapsed nav#nav,
+ .side.side-collapsed .hint {
+  display: none !important;
+ }
+ .side.side-collapsed .side-header {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
  }
  .side-header {
   display: flex;
@@ -4129,9 +4261,12 @@ function proposeObjectivesFromEvaluation(){
   color: #475569;
  }
  .mobile-nav-toggle {
-  display: none;
-  padding: 6px 10px;
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px !important;
+  font-size: 12px !important;
+  min-height: 30px !important;
  }
  nav#nav {
   display: flex;
@@ -4839,17 +4974,105 @@ function proposeObjectivesFromEvaluation(){
   });
  }
 
- // 2. Navegación móvil (píldoras horizontales + barra inferior + desplegable)
- window.toggleMobileNavGrid = function(){
-  const side=document.querySelector('.side');
-  const btn=document.getElementById('mobileNavToggle');
-  if(!side)return;
-  const expanded=side.classList.toggle('nav-expanded');
-  if(btn){
-   btn.setAttribute('aria-expanded',String(expanded));
-   btn.textContent=expanded?'✕ Cerrar':'☰ Módulos';
+ // 1.5. Departamentos y Municipios de Colombia en cascada (Departamento -> Municipio)
+ const COLOMBIA_MUNICIPIOS_POR_DEPTO = {
+  "Amazonas": ["Leticia","Puerto Nariño","El Encanto","La Chorrera","La Pedrera","La Victoria","Mirití-Paraná","Puerto Alegría","Puerto Arica","Santander (Araracuara)","Tarapacá"],
+  "Antioquia": ["Medellín","Abejorral","Abriaquí","Alejandría","Amagá","Amalfi","Andes","Angelópolis","Angostura","Anorí","Anzá","Apartadó","Arboletes","Argelia","Armenia","Barbosa","Bello","Belmira","Betania","Betulia","Briceño","Buriticá","Cáceres","Caicedo","Caldas","Campamento","Cañasgordas","Caracolí","Caramanta","Carepa","Carolina del Príncipe","Caucasia","Chigorodó","Cisneros","Ciudad Bolívar","Cocorná","Concepción","Concordia","Copacabana","Dabeiba","Donmatías","Ebéjico","El Bagre","El Carmen de Viboral","El Peñol","El Retiro","El Santuario","Entrerríos","Envigado","Fredonia","Frontino","Giraldo","Girardota","Gómez Plata","Granada","Guadalupe","Guarne","Guatapé","Heliconia","Hispania","Itagüí","Ituango","Jardín","Jericó","La Ceja","La Estrella","La Pintada","La Unión","Liborina","Maceo","Marinilla","Montebello","Murindó","Mutatá","Nariño","Nechí","Necoclí","Olaya","Peque","Pueblorrico","Puerto Berrío","Puerto Nare","Puerto Triunfo","Remedios","Rionegro","Sabanalarga","Sabaneta","Salgar","San Andrés de Cuerquia","San Carlos","San Francisco","San Jerónimo","San José de la Montaña","San Juan de Urabá","San Luis","San Pedro de los Milagros","San Pedro de Urabá","San Rafael","San Roque","San Vicente Ferrer","Santa Bárbara","Santa Fe de Antioquia","Santa Rosa de Osos","Santo Domingo","Segovia","Sonsón","Sopetrán","Támesis","Tarazá","Tarso","Titiribí","Toledo","Turbo","Uramita","Urrao","Valdivia","Valparaíso","Vegachí","Venecia","Vigía del Fuerte","Yalí","Yarumal","Yolombó","Yondó","Zaragoza"],
+  "Arauca": ["Arauca","Arauquita","Cravo Norte","Fortul","Puerto Rondón","Saravena","Tame"],
+  "Atlántico": ["Barranquilla","Baranoa","Campo de la Cruz","Candelaria","Galapa","Juan de Acosta","Luruaco","Malambo","Manatí","Palmar de Varela","Piojó","Polonuevo","Ponedera","Puerto Colombia","Repelón","Sabanagrande","Sabanalarga","Santa Lucía","Santo Tomás","Soledad","Suan","Tubará","Usiacurí"],
+  "Bogotá D. C.": ["Bogotá D. C.","Usaquén","Chapinero","Santa Fe","San Cristóbal","Usme","Tunjuelito","Bosa","Kennedy","Fontibón","Engativá","Suba","Barrios Unidos","Teusaquillo","Los Mártires","Antonio Nariño","Puente Aranda","La Candelaria","Rafael Uribe Uribe","Ciudad Bolívar","Sumapaz"],
+  "Bolívar": ["Cartagena de Indias","Achí","Altos del Rosario","Arenal","Arjona","Arroyohondo","Barranco de Loba","Calamar","Cantagallo","Cicuco","Clemencia","Córdoba","El Carmen de Bolívar","El Guamo","El Peñón","Hatillo de Loba","Magangué","Mahates","Margarita","María la Baja","Mompós","Montecristo","Morales","Norosí","Pinillos","Regidor","Río Viejo","San Cristóbal","San Estanislao","San Fernando","San Jacinto","San Jacinto del Cauca","San Juan Nepomuceno","San Martín de Loba","San Pablo","Santa Catalina","Santa Rosa","Santa Rosa del Sur","Simití","Soplaviento","Talaigua Nuevo","Tiquisio","Turbaco","Turbaná","Villanueva","Zambrano"],
+  "Boyacá": ["Tunja","Almeida","Aquitania","Arcabuco","Belén","Berbeo","Betéitiva","Boavita","Boyacá","Briceño","Buenavista","Busbanzá","Caldas","Campohermoso","Cerinza","Chinavita","Chiquinquirá","Chíquiza","Chiscas","Chita","Chitaraque","Chivatá","Chivor","Ciénega","Cómbita","Coper","Corrales","Covarachía","Cubará","Cucaita","Cuítiva","Duitama","El Cocuy","El Espino","Firavitoba","Floresta","Gachantivá","Gámeza","Garagoa","Guacamayas","Guateque","Guayatá","Güicán","Iza","Jenesano","Jericó","Labranzagrande","La Capilla","La Uvita","La Victoria","Macanal","Maripí","Miraflores","Mongua","Monguí","Moniquirá","Motavita","Muzo","Nobsa","Nuevo Colón","Oicatá","Otanche","Pachavita","Páez","Paipa","Pajarito","Panqueba","Pauna","Paya","Paz de Río","Pesca","Pisba","Puerto Boyacá","Quípama","Ramiriquí","Ráquira","Rondón","Saboyá","Sáchica","Samacá","San Eduardo","San José de Pare","San Luis de Gaceno","San Mateo","San Miguel de Sema","San Pablo de Borbur","Santa María","Santa Rosa de Viterbo","Santa Sofía","Santana","Sativanorte","Sativasur","Siachoque","Soatá","Socha","Socotá","Sogamoso","Somondoco","Sora","Soracá","Sotaquirá","Susacón","Sutamarchán","Sutatenza","Tasco","Tenza","Tibaná","Tibasosa","Tinjacá","Tipacoque","Toca","Togüí","Tópaga","Tota","Tununguá","Turmequé","Tuta","Tutazá","Úmbita","Ventaquemada","Villa de Leyva","Viracachá","Zetaquira"],
+  "Caldas": ["Manizales","Aguadas","Anserma","Aranzazu","Belalcázar","Chinchiná","Filadelfia","La Dorada","La Merced","Manzanares","Marmato","Marquetalia","Marulanda","Neira","Norcasia","Pácora","Palestina","Pensilvania","Riosucio","Risaralda","Salamina","Samaná","San José","Supía","Victoria","Villamaría","Viterbo"],
+  "Caquetá": ["Florencia","Albania","Belén de los Andaquíes","Cartagena del Chairá","Curillo","El Doncello","El Paujil","La Montañita","Milán","Morelia","Puerto Rico","San José del Fragua","San Vicente del Caguán","Solano","Solita","Valparaíso"],
+  "Casanare": ["Yopal","Aguazul","Chámeza","Hato Corozal","La Salina","Maní","Monterrey","Nunchía","Orocué","Paz de Ariporo","Pore","Recetor","Sabanalarga","Sácama","San Luis de Palenque","Támara","Tauramena","Trinidad","Villanueva"],
+  "Cauca": ["Popayán","Almaguer","Argelia","Balboa","Bolívar","Buenos Aires","Cajibío","Caldono","Caloto","Corinto","El Tambo","Florencia","Guachené","Guapi","Inzá","Jambaló","La Sierra","La Vega","López de Micay","Mercaderes","Miranda","Morales","Padilla","Páez","Patía","Piamonte","Piendamó","Puerto Tejada","Puracé","Rosas","San Sebastián","Santander de Quilichao","Santa Rosa","Silvia","Sotará","Suárez","Sucre","Timbío","Timbiquí","Toribío","Totoró","Villa Rica"],
+  "Cesar": ["Valledupar","Aguachica","Agustín Codazzi","Astrea","Becerril","Bosconia","Chimichagua","Chiriguaná","Curumaní","El Copey","El Paso","Gamarra","González","La Gloria","La Jagua de Ibirico","La Paz","Manaure Balcón del Cesar","Pailitas","Pelaya","Pueblo Bello","Río de Oro","San Alberto","San Diego","San Martín","Tamalameque"],
+  "Chocó": ["Quibdó","Acandí","Alto Baudó","Atrato","Bagadó","Bahía Solano","Bajo Baudó","Bojayá","Cantón de San Pablo","Carmen del Darién","Cértegui","Condoto","El Carmen de Atrato","El Litoral del San Juan","Istmina","Juradó","Lloró","Medio Atrato","Medio Baudó","Medio San Juan","Nóvita","Nuquí","Río Iró","Río Quito","Riosucio","San José del Palmar","Sipí","Tadó","Unguía","Unión Panamericana"],
+  "Córdoba": ["Montería","Ayapel","Buenavista","Canalete","Cereté","Chimá","Chinú","Ciénaga de Oro","Cotorra","La Apartada","Lorica","Los Córdobas","Momil","Moñitos","Planeta Rica","Pueblo Nuevo","Puerto Escondido","Puerto Libertador","Purísima","Sahagún","San Andrés de Sotavento","San Antero","San Bernardo del Viento","San Carlos","San José de Uré","San Pelayo","Tierralta","Tuchín","Valencia"],
+  "Cundinamarca": ["Agua de Dios","Albán","Anapoima","Anolaima","Apulo","Arbeláez","Beltrán","Bituima","Bojacá","Cabrera","Cachipay","Cajicá","Caparrapí","Cáqueza","Carmen de Carupa","Chaguaní","Chía","Chipaque","Choachí","Chocontá","Cogua","Cota","Cucunubá","El Colegio","El Peñón","El Rosal","Facatativá","Fómeque","Fosca","Funza","Fúquene","Fusagasugá","Gachalá","Gachancipá","Gachetá","Gama","Girardot","Granada","Guachetá","Guaduas","Guasca","Guataquí","Guatavita","Guayabal de Síquima","Guayabetal","Gutiérrez","Jerusalén","Junín","La Calera","La Mesa","La Palma","La Peña","La Vega","Lenguazaque","Machetá","Madrid","Manta","Medina","Mosquera","Nariño","Nemocón","Nilo","Nimaima","Nocaima","Pacho","Paime","Pandi","Paratebueno","Pasca","Puerto Salgar","Pulí","Quebradanegra","Quetame","Quipile","Ricaurte","San Antonio del Tequendama","San Bernardo","San Cayetano","San Francisco","San Juan de Rioseco","Sasaima","Sesquilé","Sibaté","Silvania","Simijaca","Soacha","Sopó","Subachoque","Suesca","Supatá","Susa","Sutatausa","Tabio","Tausa","Tena","Tenjo","Tibacuy","Tibirita","Tocaima","Tocancipá","Topaipí","Ubalá","Ubaque","Ubaté","Une","Útica","Venecia","Vergara","Vianí","Villagómez","Villapinzón","Villeta","Viotá","Yacopí","Zipacón","Zipaquirá"],
+  "Guainía": ["Inírida","Barranco Minas","Mapiripana","San Felipe","Puerto Colombia","La Guadalupe","Cacahual","Pana Pana","Morichal"],
+  "Guaviare": ["San José del Guaviare","Calamar","El Retorno","Miraflores"],
+  "Huila": ["Neiva","Acevedo","Agrado","Aipe","Algeciras","Altamira","Baraya","Campoalegre","Colombia","Elías","Garzón","Gigante","Guadalupe","Hobo","Íquira","Isnos","La Argentina","La Plata","Nátaga","Oporapa","Paicol","Palermo","Palestina","Pital","Pitalito","Rivera","Saladoblanco","San Agustín","Santa María","Suaza","Tarqui","Tello","Teruel","Tesalia","Timaná","Villavieja","Yaguará"],
+  "La Guajira": ["Riohacha","Albania","Barrancas","Dibulla","Distracción","El Molino","Fonseca","Hatonuevo","La Jagua del Pilar","Maicao","Manaure","San Juan del Cesar","Uribia","Urumita","Villanueva"],
+  "Magdalena": ["Santa Marta","Algarrobo","Aracataca","Ariguaní","Cerro de San Antonio","Chibolo","Ciénaga","Concordia","El Banco","El Piñón","El Retén","Fundación","Guamal","Nueva Granada","Pedraza","Pijiño del Carmen","Pivijay","Plato","Puebloviejo","Remolino","Sabanas de San Ángel","Salamina","San Sebastián de Buenavista","San Zenón","Santa Ana","Santa Bárbara de Pinto","Sitionuevo","Tenerife","Zapayán","Zona Bananera"],
+  "Meta": ["Villavicencio","Acacías","Barranca de Upía","Cabuyaro","Castilla la Nueva","Cubarral","Cumaral","El Calvario","El Castillo","El Dorado","Fuente de Oro","Granada","Guamal","La Macarena","Lejanías","Mapiripán","Mesetas","Puerto Concordia","Puerto Gaitán","Puerto Lleras","Puerto López","Puerto Rico","Restrepo","San Carlos de Guaroa","San Juan de Arama","San Juanito","San Martín","Uribe","Vista Hermosa"],
+  "Nariño": ["Pasto","Albán","Aldana","Ancuya","Arboleda","Barbacoas","Belén","Buesaco","Chachagüí","Colón","Consacá","Contadero","Córdoba","Cuaspud","Cumbal","Cumbitara","El Charco","El Peñol","El Rosario","El Tablón de Gómez","El Tambo","Francisco Pizarro","Funes","Guachucal","Guaitarilla","Gualmatán","Iles","Imués","Ipiales","La Cruz","La Florida","La Llanada","La Tola","La Unión","Leiva","Linares","Los Andes","Magüí Payán","Mallama","Mosquera","Nariño","Olaya Herrera","Ospina","Policarpa","Potosí","Providencia","Puerres","Pupiales","Ricaurte","Roberto Payán","Samaniego","San Bernardo","San Lorenzo","San Pablo","San Pedro de Cartago","Sandoná","Santa Bárbara","Santacruz","Sapuyes","Taminango","Tangua","Tumaco","Túquerres","Yacuanquer"],
+  "Norte de Santander": ["Cúcuta","Ábrego","Arboledas","Bochalema","Bucarasica","Cácota","Cáchira","Chinácota","Chitagá","Convención","Cucutilla","Durania","El Carmen","El Tarra","El Zulia","Gramalote","Hacarí","Herrán","La Esperanza","La Playa de Belén","Labateca","Los Patios","Lourdes","Mutiscua","Ocaña","Pamplona","Pamplonita","Puerto Santander","Ragonvalia","Salazar de Las Palmas","San Calixto","San Cayetano","Santiago","Sardinata","Silos","Teorama","Tibú","Toledo","Villa Caro","Villa del Rosario"],
+  "Putumayo": ["Mocoa","Colón","Orito","Puerto Asís","Puerto Caicedo","Puerto Guzmán","Puerto Leguízamo","San Francisco","San Miguel","Santiago","Sibundoy","Valle del Guamuez","Villagarzón"],
+  "Quindío": ["Armenia","Buenavista","Calarcá","Circasia","Córdoba","Filandia","Génova","La Tebaida","Montenegro","Pijao","Quimbaya","Salento"],
+  "Risaralda": ["Pereira","Apía","Balboa","Belén de Umbría","Dosquebradas","Guática","La Celia","La Virginia","Marsella","Mistrató","Pueblo Rico","Quinchía","Santa Rosa de Cabal","Santuario"],
+  "San Andrés, Providencia y Santa Catalina": ["San Andrés","Providencia y Santa Catalina"],
+  "Santander": ["Bucaramanga","Aguada","Albania","Aratoca","Barbosa","Barichara","Barrancabermeja","Betulia","Bolívar","Cabrera","California","Capitanejo","Carcasí","Cepitá","Cerrito","Charalá","Charta","Chima","Chipatá","Cimitarra","Concepción","Confines","Contratación","Coromoro","Curití","El Carmen de Chucurí","El Guacamayo","El Peñón","El Playón","Encino","Enciso","Florián","Floridablanca","Galán","Gámbita","Girón","Guaca","Guadalupe","Guapotá","Guavatá","Güepsa","Hato","Jesús María","Jordán","La Belleza","La Paz","Landázuri","Lebrija","Los Santos","Macaravita","Málaga","Matanza","Mogotes","Molagavita","Ocamonte","Oiba","Onzaga","Palmar","Palmas del Socorro","Páramo","Piedecuesta","Pinchote","Puente Nacional","Puerto Parra","Puerto Wilches","Rionegro","Sabana de Torres","San Andrés","San Benito","San Gil","San Joaquín","San José de Miranda","San Miguel","San Vicente de Chucurí","Santa Bárbara","Santa Helena del Opón","Simacota","Socorro","Suaita","Sucre","Suratá","Tona","Valle de San José","Vélez","Vetas","Villanueva","Zapatoca"],
+  "Sucre": ["Sincelejo","Buenavista","Caimito","Chalán","Colosó","Corozal","Coveñas","El Roble","Galeras","Guaranda","La Unión","Los Palmitos","Majagual","Morroa","Ovejas","Palmito","Sampués","San Benito Abad","San Juan de Betulia","San Marcos","San Onofre","San Pedro","Sincé","Sucre","Tolú","Toluviejo"],
+  "Tolima": ["Villahermosa","Ibagué","Alpujarra","Alvarado","Ambalema","Anzoátegui","Armero Guayabal","Ataco","Cajamarca","Carmen de Apicalá","Casabianca","Chaparral","Coello","Coyaima","Cunday","Dolores","Espinal","Falan","Flandes","Fresno","Guamo","Herveo","Honda","Icononzo","Lérida","Líbano","Mariquita","Melgar","Murillo","Natagaima","Ortega","Palocabildo","Piedras","Planadas","Prado","Purificación","Rioblanco","Roncesvalles","Rovira","Saldaña","San Antonio","San Luis","Santa Isabel","Suárez","Valle de San Juan","Venadillo","Villarrica"],
+  "Valle del Cauca": ["Cali","Alcalá","Andalucía","Ansermanuevo","Argelia","Bolívar","Buenaventura","Buga","Bugalagrande","Caicedonia","Calima El Darién","Candelaria","Cartago","Dagua","El Águila","El Cairo","El Cerrito","El Dovio","Florida","Ginebra","Guacarí","Jamundí","La Cumbre","La Unión","La Victoria","Obando","Palmira","Pradera","Restrepo","Riofrío","Roldanillo","San Pedro","Sevilla","Toro","Trujillo","Tuluá","Ulloa","Versalles","Vijes","Yotoco","Yumbo","Zarzal"],
+  "Vaupés": ["Mitú","Carurú","Pacoa","Papunaua","Taraira","Yavaraté"],
+  "Vichada": ["Puerto Carreño","Cumaribo","La Primavera","Santa Rosalía"]
+ };
+
+ window.handleDepartamentoChange = function(depto, preservedMunicipio = ''){
+  const mpioSelect = document.getElementById('municipioSelect');
+  if(!mpioSelect)return;
+  const cleanDepto = (depto || '').trim();
+  if(!cleanDepto){
+   mpioSelect.innerHTML = '<option value="">Primero seleccione un departamento</option>';
+   mpioSelect.disabled = true;
+   return;
   }
-  if(expanded)side.scrollIntoView({behavior:'smooth',block:'nearest'});
+  const list = COLOMBIA_MUNICIPIOS_POR_DEPTO[cleanDepto] || [];
+  mpioSelect.disabled = false;
+  mpioSelect.innerHTML = '<option value="">Seleccione municipio (' + cleanDepto + ')</option>' +
+   list.map(m => `<option value="${escapeAttr(m)}">${escapeAttr(m)}</option>`).join('') +
+   '<option value="Otro municipio">Otro municipio</option>';
+  if(preservedMunicipio){
+   if(![...mpioSelect.options].some(o => o.value === preservedMunicipio)){
+    mpioSelect.add(new Option(preservedMunicipio, preservedMunicipio));
+   }
+   mpioSelect.value = preservedMunicipio;
+  }
+  handleMunicipioChange(mpioSelect.value);
+ };
+
+ window.handleMunicipioChange = function(mpio){
+  const depto = document.getElementById('departamentoSelect')?.value?.trim() || '';
+  const placeInput = document.getElementById('consentPlace');
+  if(placeInput && mpio && depto){
+   placeInput.value = `${mpio}, ${depto}`;
+  }
+  if(typeof syncBlankEvolutionIdentifications === 'function') syncBlankEvolutionIdentifications();
+ };
+
+ // 2. Abrir / Ocultar lista de Módulos Clínicos (funciona en PC, Tablet y Celular)
+ window.toggleMobileNavGrid = function(){
+  const side = document.getElementById('clinicalSidebar') || document.querySelector('.side');
+  const layout = document.getElementById('mainLayout') || document.querySelector('.layout');
+  const btn = document.getElementById('mobileNavToggle');
+  if(!side)return;
+
+  if(window.innerWidth <= 960){
+   // En móvil/tablet: alternar entre cerrado, barra o cuadrícula desplegada de los 9 módulos
+   if(side.classList.contains('side-collapsed')){
+    side.classList.remove('side-collapsed');
+    side.classList.add('nav-expanded');
+    if(btn){ btn.setAttribute('aria-expanded','true'); btn.textContent = '✕ Ocultar'; }
+   } else if(side.classList.contains('nav-expanded')){
+    side.classList.remove('nav-expanded');
+    side.classList.add('side-collapsed');
+    if(btn){ btn.setAttribute('aria-expanded','false'); btn.textContent = '☰ Módulos'; }
+   } else {
+    side.classList.add('nav-expanded');
+    if(btn){ btn.setAttribute('aria-expanded','true'); btn.textContent = '✕ Ocultar'; }
+   }
+  } else {
+   // En escritorio: contraer o expandir la lista de los 9 módulos clínicos
+   const collapsed = side.classList.toggle('side-collapsed');
+   if(layout) layout.classList.toggle('layout-menu-collapsed', collapsed);
+   if(btn){
+    btn.setAttribute('aria-expanded', String(!collapsed));
+    btn.textContent = collapsed ? '☰ Abrir módulos' : '✕ Ocultar';
+   }
+  }
  };
 
  function syncMobileNavUI(id){
@@ -4866,9 +5089,9 @@ function proposeObjectivesFromEvaluation(){
   }
   const side=document.querySelector('.side');
   const toggleBtn=document.getElementById('mobileNavToggle');
-  if(side&&side.classList.contains('nav-expanded')){
+  if(window.innerWidth<=960&&side&&side.classList.contains('nav-expanded')){
    side.classList.remove('nav-expanded');
-   if(toggleBtn){toggleBtn.setAttribute('aria-expanded','false');toggleBtn.textContent='☰ Módulos';}
+   if(toggleBtn){toggleBtn.setAttribute('aria-expanded','true');toggleBtn.textContent='☰ Ver cuadrícula';}
   }
   // Limpiar filtro rápido al cambiar de módulo
   const filterInput = document.getElementById('quickFieldFilter');
@@ -4881,6 +5104,9 @@ function proposeObjectivesFromEvaluation(){
  const origTab = window.tab;
  window.tab = function(id){
   origTab(id);
+  if(id==='evoluciones' && typeof syncBlankEvolutionIdentifications==='function'){
+   syncBlankEvolutionIdentifications();
+  }
   syncMobileNavUI(id);
   updateLivePatientContextAndProgress();
   scheduleAutosave();
@@ -5101,13 +5327,27 @@ function proposeObjectivesFromEvaluation(){
    }
 
    if(state.panels){
+    // Si hay departamento y municipio guardados, cargar primero los municipios del departamento
+    const identSaved = state.panels.identificacion || [];
+    const savedDeptoItem = identSaved.find(x => x.id === 'departamentoSelect' || x.share === 'departamento');
+    const savedMpioItem  = identSaved.find(x => x.id === 'municipioSelect' || x.share === 'municipio');
+    if(savedDeptoItem && savedDeptoItem.value){
+     const dSel = document.getElementById('departamentoSelect');
+     if(dSel){
+      dSel.value = savedDeptoItem.value;
+      handleDepartamentoChange(savedDeptoItem.value, savedMpioItem?.value || '');
+     }
+    }
+
     Object.entries(state.panels).forEach(([panelId, savedControls])=>{
      const panel = document.getElementById(panelId);
      if(!panel || !Array.isArray(savedControls))return;
      const liveControls = [...panel.querySelectorAll('input:not([type="file"]):not([type="button"]):not([type="submit"]), select, textarea')];
      savedControls.forEach((item, idx)=>{
+      if(item.id === 'municipioSelect' && savedDeptoItem?.value) return;
       let el = null;
       if(item.id) el = panel.querySelector('#'+CSS.escape(item.id));
+      if(!el && item.share) el = panel.querySelector(`[data-share="${CSS.escape(item.share)}"]`);
       if(!el && item.label){
        el = liveControls.find(c => (c.dataset.evaluationArea||c.dataset.label||c.dataset.field||'') === item.label);
       }
@@ -5163,6 +5403,7 @@ function proposeObjectivesFromEvaluation(){
      });
     }
    }
+   if(typeof syncBlankEvolutionIdentifications==='function') syncBlankEvolutionIdentifications();
 
    if(state.signatures){
     setupTouchSignatures();
