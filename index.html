@@ -647,7 +647,7 @@
  #consentimiento .consent-signatures .professional-inline-signature{width:43mm!important;max-height:16mm!important}
  #consentimiento .professional-print-signature{display:none!important}
 }
-</style></head><body><header class="top"><div class="top-row"><div class="brand-wrap"><div class="brand-icon no-print" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></div><div><h1>REGISTRO FONOAUDIOLÓGICO INTEGRAL</h1><p>Historia clínica · Tamizaje · Evaluación · Plan de intervención · Evolución</p></div></div><div class="top-status no-print"><span class="autosave-badge" id="autosaveBadge" title="Los datos se guardan automáticamente en este dispositivo">✓ Autoguardado activo</span><button class="btn pwa-install-btn" hidden="" id="pwaInstallBtn" type="button">📲 Instalar App</button></div></div>
+</style></head><body><header class="top"><div class="top-row"><div class="brand-wrap"><div class="brand-icon no-print" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></div><div><h1>REGISTRO FONOAUDIOLÓGICO INTEGRAL</h1><p>Sistema Clínico en la Nube · Historia · Tamizaje · Evaluación · Plan · Evolución</p></div></div><div class="top-status no-print"><button class="btn top-nav-btn" id="btnOpenDashboard" onclick="openPatientsDashboard()" type="button">🗂️ Mis Pacientes <span class="count-pill" id="patientCountBadge">0</span></button><button class="btn top-nav-btn" id="btnNewPatientTop" onclick="startNewPatientRecord()" type="button">➕ Nuevo Paciente</button><button class="btn top-cloud-btn" id="btnSaveCloud" onclick="saveCurrentPatientAndSync(true)" type="button">☁️ Guardar en Nube</button><span class="autosave-badge" id="autosaveBadge" title="Estado de sincronización local y en la nube">✓ Sincronizado</span><button class="btn pwa-install-btn" hidden="" id="pwaInstallBtn" type="button">📲 Instalar App</button><button class="btn top-logout-btn" id="btnLogout" onclick="logoutClinicalSession()" title="Cerrar sesión clínica" type="button">🔒 Salir</button></div></div>
 <div class="patient-context-bar no-print" id="patientContextBar">
  <div class="pcb-item"><span class="pcb-label">Paciente</span><strong id="pcbName">Sin registrar</strong></div>
  <div class="pcb-sep"></div>
@@ -5287,23 +5287,1288 @@ function proposeObjectivesFromEvaluation(){
   });
  }
 
- // Inicializar al cargar el DOM
- document.addEventListener('DOMContentLoaded', () => {
-  enhanceSidebarNav();
-  wrapResponsiveTables();
-  setupTouchSignatures();
-  initSigCanvasEvents();
-  syncMobileNavUI(active);
+  window.collectClinicalRecordState = collectAppState;
+  window.applyClinicalRecordState = applyAppState;
+  window.updateLivePatientContextAndProgress = updateLivePatientContextAndProgress;
+
+  // Inicializar al cargar el DOM
+  document.addEventListener('DOMContentLoaded', () => {
+   enhanceSidebarNav();
+   wrapResponsiveTables();
+   setupTouchSignatures();
+   initSigCanvasEvents();
+   syncMobileNavUI(active);
+   try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+     const parsed = JSON.parse(raw);
+     applyAppState(parsed);
+    }
+   } catch(e){}
+   updateLivePatientContextAndProgress();
+   document.addEventListener('input', () => { updateLivePatientContextAndProgress(); scheduleAutosave(); if(typeof window.schedulePatientDbAutosave==='function')window.schedulePatientDbAutosave(); }, true);
+   document.addEventListener('change', () => { updateLivePatientContextAndProgress(); scheduleAutosave(); if(typeof window.schedulePatientDbAutosave==='function')window.schedulePatientDbAutosave(); }, true);
+  });
+})();
+</script>
+
+<!-- V79: Sesión Clínica, Base de Datos en la Nube Privada de GitHub y Panel de Pacientes/Documentos -->
+<style>
+@media screen {
+ /* Botones de cabecera para gestión de pacientes y nube */
+ .top-nav-btn {
+  background: rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  backdrop-filter: blur(6px);
+  font-weight: 600 !important;
+  padding: 7px 12px !important;
+  border-radius: 10px !important;
+ }
+ .top-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.24) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+ }
+ .top-cloud-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  font-weight: 700 !important;
+  padding: 7px 13px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 3px 10px rgba(16, 185, 129, 0.28) !important;
+ }
+ .top-cloud-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+ }
+ .top-logout-btn {
+  background: rgba(15, 23, 42, 0.35) !important;
+  color: #fecdd3 !important;
+  border: 1px solid rgba(254, 205, 211, 0.28) !important;
+  padding: 7px 11px !important;
+  border-radius: 10px !important;
+ }
+ .top-logout-btn:hover {
+  background: rgba(190, 18, 60, 0.45) !important;
+  color: #ffffff !important;
+ }
+ .count-pill {
+  background: #5eead4;
+  color: #0f2942;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 1px 7px;
+  border-radius: 999px;
+  margin-left: 3px;
+ }
+
+ /* Pantalla de Inicio de Sesión Clínico */
+ .login-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: linear-gradient(135deg, #07192b 0%, #0f2942 45%, #115e59 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  overflow-y: auto;
+ }
+ .login-overlay[hidden] {
+  display: none !important;
+ }
+ .login-card {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 22px;
+  padding: 32px 28px;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.45);
+  color: #0f172a;
+ }
+ .login-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+ }
+ .login-brand-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #0f2942, #0d9488);
+  color: #5eead4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 8px 18px rgba(13, 148, 136, 0.25);
+ }
+ .login-brand h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 800;
+  color: #0f2942;
+  line-height: 1.25;
+ }
+ .login-brand p {
+  margin: 3px 0 0;
+  font-size: 12.5px;
+  color: #64748b;
+ }
+ .login-clinician-box {
+  background: #f0fdfa;
+  border: 1px solid #ccfbf1;
+  border-radius: 12px;
+  padding: 11px 14px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+ }
+ .login-clinician-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #0d9488;
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+ }
+ .login-clinician-box div {
+  font-size: 12.5px;
+  line-height: 1.35;
+ }
+ .login-clinician-box strong {
+  display: block;
+  color: #0f2942;
+  font-size: 13.5px;
+ }
+ .login-clinician-box span {
+  color: #0f766e;
+ }
+ .login-field {
+  margin-bottom: 14px;
+ }
+ .login-field label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 6px;
+ }
+ .login-pass-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+ }
+ .login-pass-wrap input {
+  padding-right: 42px !important;
+ }
+ .login-pass-toggle {
+  position: absolute;
+  right: 8px;
+  border: 0;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  padding: 6px;
+  font-size: 15px;
+ }
+ .login-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  margin-bottom: 14px;
+ }
+ .login-submit-btn {
+  width: 100%;
+  min-height: 46px;
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  margin-top: 6px;
+ }
+ .login-footer-note {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 11.5px;
+  color: #64748b;
+  text-align: center;
+  line-height: 1.45;
+ }
+
+ /* Panel / Dashboard de Pacientes y Documentos */
+ .dashboard-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9500;
+  background: rgba(15, 23, 42, 0.62);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px 16px;
+  overflow-y: auto;
+ }
+ .dashboard-backdrop[hidden] {
+  display: none !important;
+ }
+ .dashboard-shell {
+  width: 100%;
+  max-width: 1240px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.35);
+  overflow: hidden;
+  margin: auto 0;
+ }
+ .dashboard-header {
+  background: linear-gradient(125deg, #0b2239 0%, #134e5e 60%, #0d9488 100%);
+  color: #fff;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+ }
+ .dashboard-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+ }
+ .dashboard-header p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #ccfbf1;
+ }
+ .dashboard-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+ }
+ .dashboard-body {
+  padding: 20px 24px 26px;
+ }
+
+ /* KPIs del Dashboard */
+ .dashboard-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+ }
+ .kpi-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+ }
+ .kpi-card span {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+ }
+ .kpi-card strong {
+  display: block;
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f2942;
+  margin-top: 4px;
+ }
+ .kpi-card small {
+  display: block;
+  font-size: 11.5px;
+  color: #0d9488;
+  margin-top: 2px;
+  font-weight: 600;
+ }
+
+ /* Barra de búsqueda y filtros de pacientes */
+ .dashboard-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+ }
+ .dashboard-search-wrap {
+  flex: 1 1 260px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0 12px;
+ }
+ .dashboard-search-wrap input {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 9px 0 !important;
+  font-size: 13.5px !important;
+ }
+ .dashboard-filter-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+ }
+ .filter-pill {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+ }
+ .filter-pill.active {
+  background: #0f2942;
+  color: #ffffff;
+  border-color: #0f2942;
+ }
+
+ /* Grilla de Tarjetas de Pacientes */
+ .patients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 16px;
+ }
+ .patient-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  transition: all 0.18s ease;
+ }
+ .patient-card:hover {
+  border-color: #99f6e4;
+  box-shadow: 0 10px 25px -5px rgba(15, 41, 66, 0.10);
+  transform: translateY(-2px);
+ }
+ .patient-card.current-active-patient {
+  border: 2px solid #0d9488;
+  background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 35%);
+ }
+ .pc-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+ }
+ .pc-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0f2942, #0d9488);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+ }
+ .pc-info {
+  flex: 1;
+  min-width: 0;
+ }
+ .pc-info h3 {
+  margin: 0;
+  font-size: 15.5px;
+  font-weight: 800;
+  color: #0f2942;
+  line-height: 1.3;
+  word-break: break-word;
+ }
+ .pc-meta {
+  font-size: 12.5px;
+  color: #475569;
+  margin-top: 3px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: center;
+ }
+ .pc-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+ }
+ .pc-badge.pediatric {
+  background: #e0f2fe;
+  color: #0369a1;
+ }
+ .pc-badge.adult {
+  background: #f3e8ff;
+  color: #6d28d9;
+ }
+ .pc-badge.neutral {
+  background: #f1f5f9;
+  color: #475569;
+ }
+
+ /* Etiquetas de Documentos / Módulos de cada Paciente */
+ .pc-docs-section {
+  border-top: 1px solid #f1f5f9;
+  padding-top: 10px;
+ }
+ .pc-docs-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+  margin-bottom: 7px;
+  display: flex;
+  justify-content: space-between;
+ }
+ .pc-doc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+ }
+ .pc-doc-chip {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+ }
+ .pc-doc-chip.done {
+  background: #ecfdf5;
+  border-color: #6ee7b7;
+  color: #065f46;
+ }
+ .pc-doc-chip:hover {
+  background: #0f2942;
+  color: #ffffff;
+  border-color: #0f2942;
+ }
+
+ /* Acciones de la tarjeta del paciente */
+ .pc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 12px;
+ }
+ .pc-actions .btn {
+  flex: 1 1 auto;
+  font-size: 12.5px;
+  padding: 8px 10px;
+ }
+ .pc-actions .btn-icon-only {
+  flex: 0 0 auto;
+  padding: 8px 10px;
+ }
+
+ /* selector rápido de PDF por paciente */
+ .pc-pdf-menu {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 6px;
+ }
+ .pc-pdf-menu[hidden] {
+  display: none !important;
+ }
+ .pc-pdf-menu strong {
+  display: block;
+  font-size: 12px;
+  color: #0f2942;
+  margin-bottom: 7px;
+ }
+ .pc-pdf-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+ }
+ .pc-pdf-grid button {
+  text-align: left;
+  font-size: 11.5px;
+  padding: 6px 8px;
+  border-radius: 7px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #1e293b;
+  cursor: pointer;
+  font-weight: 600;
+ }
+ .pc-pdf-grid button:hover {
+  background: #f0fdfa;
+  border-color: #0d9488;
+  color: #0f2942;
+ }
+
+ .empty-patients-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  background: #ffffff;
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  padding: 40px 20px;
+  color: #475569;
+ }
+ .empty-patients-state h3 {
+  margin: 0 0 6px;
+  color: #0f2942;
+  font-size: 18px;
+ }
+
+ @media (max-width: 860px) {
+  .dashboard-kpis {
+   grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .patients-grid {
+   grid-template-columns: 1fr;
+  }
+  .dashboard-body {
+   padding: 14px;
+  }
+  .dashboard-header {
+   padding: 16px;
+  }
+ }
+}
+@media print {
+ .login-overlay, .dashboard-backdrop {
+  display: none !important;
+ }
+}
+</style>
+
+<!-- Pantalla de Inicio de Sesión Clínico -->
+<div class="login-overlay no-print" hidden="" id="clinicalLoginOverlay">
+ <div class="login-card">
+  <div class="login-brand">
+   <div class="login-brand-icon">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+   </div>
+   <div>
+    <h2>Acceso Clínico Fonoaudiológico</h2>
+    <p>Sincronización en la nube privada y gestión de pacientes</p>
+   </div>
+  </div>
+  <div class="login-clinician-box">
+   <div class="login-clinician-avatar">KR</div>
+   <div>
+    <strong>Karen Liseth Rico Vargas</strong>
+    <span>Fonoaudióloga EBS · T.P. 08261 · Hospital Ismael Perdomo</span>
+   </div>
+  </div>
+  <form id="clinicalLoginForm" onsubmit="handleClinicalLogin(event)">
+   <div class="login-error" hidden="" id="loginErrorBox"></div>
+   <div class="login-field">
+    <label for="loginUsername">Usuario profesional</label>
+    <input autocomplete="username" id="loginUsername" placeholder="Ej. karen" required="" type="text" value="karen"/>
+   </div>
+   <div class="login-field">
+    <label for="loginPassword">Contraseña clínica</label>
+    <div class="login-pass-wrap">
+     <input autocomplete="current-password" id="loginPassword" placeholder="Ingresa tu clave clínica" required="" type="password"/>
+     <button class="login-pass-toggle" onclick="const i=document.getElementById('loginPassword');i.type=i.type==='password'?'text':'password'" title="Mostrar / ocultar contraseña" type="button">👁️</button>
+    </div>
+   </div>
+   <div class="checks" style="margin-bottom:12px;padding:8px 10px">
+    <label style="border:0;background:transparent;padding:2px;box-shadow:none"><input checked="" id="loginRemember" type="checkbox"/> Mantener mi sesión iniciada en este dispositivo</label>
+   </div>
+   <button class="btn primary login-submit-btn" id="loginSubmitBtn" type="submit">🔓 Iniciar sesión y conectar nube</button>
+  </form>
+  <div class="login-footer-note">
+   Tus registros clínicos se cifran y sincronizan de forma privada con tu repositorio seguro en GitHub (<code>fono-pacientes-privado</code>) y se respaldan en este dispositivo para uso sin internet.
+  </div>
+ </div>
+</div>
+
+<!-- Panel General de Pacientes y Centro de Documentos -->
+<div class="dashboard-backdrop no-print" hidden="" id="patientsDashboardModal">
+ <div class="dashboard-shell" role="dialog" aria-modal="true" aria-labelledby="dashTitle">
+  <div class="dashboard-header">
+   <div>
+    <h2 id="dashTitle">🗂️ Mis Pacientes y Documentos Clínicos</h2>
+    <p id="dashCloudStatusText">Nube privada: GitHub (dslagos0-glitch/fono-pacientes-privado)</p>
+   </div>
+   <div class="dashboard-header-actions">
+    <button class="btn top-nav-btn" id="btnSyncCloudNow" onclick="syncPatientsWithGitHubCloud(true)" type="button">🔄 Sincronizar Nube</button>
+    <button class="btn top-cloud-btn" onclick="startNewPatientRecord(true)" type="button">➕ Nuevo Paciente</button>
+    <button class="btn top-nav-btn" onclick="closePatientsDashboard()" type="button">✕ Volver al expediente activo</button>
+   </div>
+  </div>
+  <div class="dashboard-body">
+   <div class="dashboard-kpis">
+    <div class="kpi-card">
+     <span>Pacientes Registrados</span>
+     <strong id="kpiTotalPatients">0</strong>
+     <small id="kpiPatientsSub">En base de datos clínica</small>
+    </div>
+    <div class="kpi-card">
+     <span>Perfil Poblacional</span>
+     <strong id="kpiPediatricAdult">0 / 0</strong>
+     <small>Pediátricos / Adultos</small>
+    </div>
+    <div class="kpi-card">
+     <span>Sesiones / Evoluciones</span>
+     <strong id="kpiTotalEvolutions">0</strong>
+     <small>Fichas de evolución acumuladas</small>
+    </div>
+    <div class="kpi-card">
+     <span>Respaldo en la Nube</span>
+     <strong id="kpiCloudState" style="font-size:16px;margin-top:8px">Conectado</strong>
+     <small id="kpiLastSyncTime">Repositorio privado activo</small>
+    </div>
+   </div>
+
+   <div class="dashboard-controls">
+    <div class="dashboard-search-wrap">
+     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+     <input id="patientSearchInput" oninput="renderPatientsDashboardList()" placeholder="Buscar paciente por nombre, documento o EPS…" type="search"/>
+    </div>
+    <div class="dashboard-filter-pills" id="patientFilterPills">
+     <button class="filter-pill active" data-filter="all" onclick="setPatientListFilter('all')" type="button">Todos</button>
+     <button class="filter-pill" data-filter="pediatric" onclick="setPatientListFilter('pediatric')" type="button">Pediátricos</button>
+     <button class="filter-pill" data-filter="adult" onclick="setPatientListFilter('adult')" type="button">Adultos</button>
+     <button class="filter-pill" data-filter="evolutions" onclick="setPatientListFilter('evolutions')" type="button">Con evoluciones</button>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+     <button class="btn" onclick="exportAllPatientsDatabase()" title="Descargar copia de todos los pacientes en un archivo JSON" type="button">📤 Exportar todo</button>
+    </div>
+   </div>
+
+   <div class="patients-grid" id="patientsGridContainer"></div>
+  </div>
+ </div>
+</div>
+
+<script>
+(function(){
+ const DB_LOCAL_KEY = 'fono_patients_multi_db_v79';
+ const SESSION_TOKEN_KEY = 'fono_clinical_github_token_v79';
+ const ACTIVE_PATIENT_ID_KEY = 'fono_active_patient_id_v79';
+ const GITHUB_OWNER = 'dslagos0-glitch';
+ const GITHUB_PRIVATE_REPO = 'fono-pacientes-privado';
+ const GITHUB_DB_PATH = 'db/patients_database.json';
+
+ // Bóveda cifrada con AES-256-CBC + PBKDF2 (100,000 iteraciones, SHA-256)
+ const ENCRYPTED_VAULT_B64 = 'hmaydAiZ+eX+MMnEq1Sc6nCIyd+VHdn9beJVWdx7XwPXHpJKB3LOULPSpfM9JX9p';
+ const VAULT_SALT = new Uint8Array([0x46,0x6F,0x6E,0x6F,0x52,0x65,0x67,0x69,0x73,0x74,0x72,0x6F,0x56,0x37,0x38,0x21]);
+ const VAULT_IV   = new Uint8Array([0x12,0x34,0x56,0x78,0x9A,0xBC,0xDE,0xF0,0x11,0x22,0x33,0x44,0x55,0x66,0x77,0x88]);
+ const ALLOWED_USERS = ['karen', 'karen rico', 'karen liseth rico vargas', 'admin', 'dslagos0-glitch', 'fonoaudiologia'];
+
+ let githubToken = null;
+ let currentPatientId = localStorage.getItem(ACTIVE_PATIENT_ID_KEY) || '';
+ let patientsDb = loadLocalPatientsDb();
+ let currentFilter = 'all';
+ let dbAutosaveTimer = null;
+ let cloudSyncTimer = null;
+ let isSyncingCloud = false;
+
+ function loadLocalPatientsDb(){
   try {
-   const raw = localStorage.getItem(STORAGE_KEY);
+   const raw = localStorage.getItem(DB_LOCAL_KEY);
    if(raw){
     const parsed = JSON.parse(raw);
-    applyAppState(parsed);
+    if(parsed && typeof parsed === 'object' && parsed.patients) return parsed;
    }
   } catch(e){}
-  updateLivePatientContextAndProgress();
-  document.addEventListener('input', () => { updateLivePatientContextAndProgress(); scheduleAutosave(); }, true);
-  document.addEventListener('change', () => { updateLivePatientContextAndProgress(); scheduleAutosave(); }, true);
+  return { version: 'V79', updatedAt: new Date().toISOString(), patients: {} };
+ }
+
+ function saveLocalPatientsDb(){
+  try {
+   patientsDb.updatedAt = new Date().toISOString();
+   localStorage.setItem(DB_LOCAL_KEY, JSON.stringify(patientsDb));
+   updatePatientCountBadge();
+  } catch(e){
+   console.warn('Error guardando BD local:', e);
+  }
+ }
+
+ function updatePatientCountBadge(){
+  const count = Object.keys(patientsDb.patients || {}).length;
+  const badge = document.getElementById('patientCountBadge');
+  if(badge) badge.textContent = String(count);
+ }
+
+ // Descifrar el token de GitHub en memoria usando Web Crypto API
+ async function decryptVaultWithPassword(password){
+  const enc = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey(
+   'raw',
+   enc.encode(password.trim()),
+   { name: 'PBKDF2' },
+   false,
+   ['deriveKey']
+  );
+  const aesKey = await crypto.subtle.deriveKey(
+   { name: 'PBKDF2', salt: VAULT_SALT, iterations: 100000, hash: 'SHA-256' },
+   keyMaterial,
+   { name: 'AES-CBC', length: 256 },
+   false,
+   ['decrypt']
+  );
+  const cipherBinary = atob(ENCRYPTED_VAULT_B64);
+  const cipherBytes = new Uint8Array(cipherBinary.length);
+  for(let i=0; i<cipherBinary.length; i++) cipherBytes[i] = cipherBinary.charCodeAt(i);
+
+  const decryptedBuffer = await crypto.subtle.decrypt(
+   { name: 'AES-CBC', iv: VAULT_IV },
+   aesKey,
+   cipherBytes
+  );
+  const dec = new TextDecoder();
+  return dec.decode(decryptedBuffer).trim();
+ }
+
+ // Iniciar sesión clínica
+ window.handleClinicalLogin = async function(event){
+  event.preventDefault();
+  const userEl = document.getElementById('loginUsername');
+  const passEl = document.getElementById('loginPassword');
+  const rememberEl = document.getElementById('loginRemember');
+  const errBox = document.getElementById('loginErrorBox');
+  const submitBtn = document.getElementById('loginSubmitBtn');
+
+  const username = (userEl?.value || '').trim().toLowerCase();
+  const password = (passEl?.value || '').trim();
+  if(errBox) errBox.hidden = true;
+
+  if(!ALLOWED_USERS.includes(username)){
+   if(errBox){
+    errBox.textContent = 'Usuario no reconocido. Usa «karen» o «dslagos0-glitch».';
+    errBox.hidden = false;
+   }
+   return;
+  }
+
+  try {
+   if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = '⏳ Verificando credenciales…'; }
+   const token = await decryptVaultWithPassword(password);
+   if(!token || token.length < 15) throw new Error('Token inválido');
+   githubToken = token;
+   const storage = rememberEl?.checked ? localStorage : sessionStorage;
+   storage.setItem(SESSION_TOKEN_KEY, token);
+
+   document.getElementById('clinicalLoginOverlay').hidden = true;
+   await syncPatientsWithGitHubCloud(false);
+
+   // Si ya hay pacientes registrados y el formulario actual está vacío, mostrar el panel de pacientes
+   const currentData = typeof getPatientData==='function' ? getPatientData() : {};
+   const hasCurrentPatient = !!(currentData.name || currentData.doc);
+   if(!hasCurrentPatient && Object.keys(patientsDb.patients || {}).length > 0){
+    openPatientsDashboard();
+   }
+  } catch(err){
+   if(errBox){
+    errBox.textContent = 'Contraseña clínica incorrecta. Verifica e intenta nuevamente.';
+    errBox.hidden = false;
+   }
+  } finally {
+   if(submitBtn){ submitBtn.disabled = false; submitBtn.textContent = '🔓 Iniciar sesión y conectar nube'; }
+  }
+ };
+
+ window.logoutClinicalSession = function(){
+  if(!confirm('¿Cerrar tu sesión clínica en este dispositivo? Tus datos guardados en la nube permanecerán seguros.'))return;
+  saveCurrentPatientToLocalDb();
+  githubToken = null;
+  localStorage.removeItem(SESSION_TOKEN_KEY);
+  sessionStorage.removeItem(SESSION_TOKEN_KEY);
+  const passEl = document.getElementById('loginPassword');
+  if(passEl) passEl.value = '';
+  document.getElementById('patientsDashboardModal').hidden = true;
+  document.getElementById('clinicalLoginOverlay').hidden = false;
+ };
+
+ // Evaluar qué módulos tienen información en un expediente serializado
+ function summarizePatientRecord(state){
+  const completedModules = [];
+  const moduleNames = {
+   identificacion: '01 Identificación',
+   consentimiento: '02 Consentimiento',
+   anamnesis: '03 Anamnesis',
+   catalogo: '04 Catálogo',
+   tamizaje: '05 Tamizaje',
+   evaluacion: '06 Evaluación',
+   plan: '07 Diagnóstico y Plan'
+  };
+  if(state && state.panels){
+   Object.entries(moduleNames).forEach(([id, label])=>{
+    const ctrls = state.panels[id] || [];
+    const hasVal = ctrls.some(c => {
+     if(c.type==='checkbox'||c.type==='radio') return !!c.checked;
+     return !!(c.value && String(c.value).trim());
+    });
+    if(hasVal) completedModules.push({ id, label });
+   });
+  }
+  const evoCount = Array.isArray(state?.evolutions) ? state.evolutions.filter(ev=>{
+   const f = ev.fields || {};
+   return Object.values(f).some(v => String(v||'').trim().length > 0);
+  }).length : 0;
+
+  return { completedModules, evoCount };
+ }
+
+ // Guardar el expediente actualmente abierto dentro del diccionario multi-paciente local
+ function saveCurrentPatientToLocalDb(){
+  if(typeof window.collectClinicalRecordState !== 'function') return null;
+  const p = typeof getPatientData==='function' ? getPatientData() : {};
+  const name = (p.name || '').trim();
+  const doc = (p.doc || '').trim();
+  if(!name && !doc) return null;
+
+  // Si hay documento, usamos un ID determinístico basado en su documento para evitar duplicados
+  const cleanDoc = doc.replace(/[^a-zA-Z0-9]+/g, '');
+  let pid = currentPatientId;
+  if(cleanDoc){
+   const docBasedId = 'pac_' + cleanDoc;
+   if(pid && pid !== docBasedId && patientsDb.patients[pid] && !patientsDb.patients[pid].doc){
+    delete patientsDb.patients[pid];
+   }
+   pid = docBasedId;
+  } else if(!pid){
+   pid = 'pac_' + Date.now();
+  }
+  currentPatientId = pid;
+  localStorage.setItem(ACTIVE_PATIENT_ID_KEY, pid);
+
+  const recordState = window.collectClinicalRecordState();
+  const profile = typeof patientProfile==='function' ? patientProfile() : 'neutral';
+  const summary = summarizePatientRecord(recordState);
+
+  patientsDb.patients[pid] = {
+   id: pid,
+   name: name || 'Paciente sin nombre',
+   type: p.type || '',
+   doc: doc || '',
+   dob: p.dob || '',
+   ageText: p.ageText || '',
+   eps: p.eps || '',
+   profile,
+   updatedAt: new Date().toISOString(),
+   completedModules: summary.completedModules,
+   evoCount: summary.evoCount,
+   recordState
+  };
+
+  saveLocalPatientsDb();
+  return patientsDb.patients[pid];
+ }
+
+ window.schedulePatientDbAutosave = function(){
+  clearTimeout(dbAutosaveTimer);
+  dbAutosaveTimer = setTimeout(()=>{
+   const saved = saveCurrentPatientToLocalDb();
+   if(saved && githubToken){
+    // Sincronización automática diferida a la nube cada 20 segundos tras cambios
+    clearTimeout(cloudSyncTimer);
+    cloudSyncTimer = setTimeout(()=>syncPatientsWithGitHubCloud(false), 20000);
+   }
+  }, 700);
+ };
+
+ // Codificación Base64 compatible con UTF-8 completo en navegador
+ function utf8ToBase64(str){
+  const bytes = new TextEncoder().encode(str);
+  let bin = '';
+  const chunk = 0x8000;
+  for(let i=0; i<bytes.length; i+=chunk){
+   bin += String.fromCharCode.apply(null, bytes.subarray(i, i+chunk));
+  }
+  return btoa(bin);
+ }
+
+ function base64ToUtf8(b64){
+  const clean = b64.replace(/\s+/g, '');
+  const bin = atob(clean);
+  const bytes = new Uint8Array(bin.length);
+  for(let i=0; i<bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+ }
+
+ // Sincronizar base de datos de pacientes con el repositorio privado de GitHub
+ window.syncPatientsWithGitHubCloud = async function(showNotification = false){
+  saveCurrentPatientToLocalDb();
+  if(!githubToken){
+   if(showNotification) alert('Inicia sesión primero para sincronizar con la nube privada de GitHub.');
+   return;
+  }
+  if(isSyncingCloud) return;
+  isSyncingCloud = true;
+
+  const badge = document.getElementById('autosaveBadge');
+  const syncBtn = document.getElementById('btnSyncCloudNow');
+  const cloudKpi = document.getElementById('kpiCloudState');
+  if(badge) badge.textContent = '☁️ Sincronizando nube…';
+  if(syncBtn){ syncBtn.disabled = true; syncBtn.textContent = '⏳ Sincronizando…'; }
+
+  const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_PRIVATE_REPO}/contents/${GITHUB_DB_PATH}`;
+  const headers = {
+   'Authorization': `Bearer ${githubToken}`,
+   'Accept': 'application/vnd.github+json',
+   'X-GitHub-Api-Version': '2022-11-28'
+  };
+
+  try {
+   // 1. Descargar base existente en la nube (si existe) y fusionar por fecha más reciente
+   let existingSha = null;
+   const getResp = await fetch(apiUrl + '?t=' + Date.now(), { headers, cache: 'no-store' });
+   if(getResp.status === 200){
+    const fileObj = await getResp.json();
+    existingSha = fileObj.sha;
+    let rawJson = '';
+    if(fileObj.content){
+     rawJson = base64ToUtf8(fileObj.content);
+    } else if(fileObj.download_url){
+     const dl = await fetch(fileObj.download_url, { cache: 'no-store' });
+     rawJson = await dl.text();
+    }
+    if(rawJson){
+     const remoteDb = JSON.parse(rawJson);
+     if(remoteDb && remoteDb.patients){
+      Object.entries(remoteDb.patients).forEach(([pid, rPat])=>{
+       const lPat = patientsDb.patients[pid];
+       if(!lPat || new Date(rPat.updatedAt || 0) > new Date(lPat.updatedAt || 0)){
+        patientsDb.patients[pid] = rPat;
+       }
+      });
+     }
+    }
+   }
+
+   // 2. Subir la base fusionada y actualizada al repositorio privado
+   saveLocalPatientsDb();
+   const jsonString = JSON.stringify(patientsDb, null, 2);
+   const putBody = {
+    message: `Sincronización clínica (${Object.keys(patientsDb.patients).length} pacientes) - ${new Date().toISOString()}`,
+    content: utf8ToBase64(jsonString),
+    branch: 'main'
+   };
+   if(existingSha) putBody.sha = existingSha;
+
+   const putResp = await fetch(apiUrl, {
+    method: 'PUT',
+    headers: { ...headers, 'Content-Type': 'application/json' },
+    body: JSON.stringify(putBody)
+   });
+
+   if(!putResp.ok){
+    throw new Error('HTTP ' + putResp.status);
+   }
+
+   const now = new Date();
+   const hh = String(now.getHours()).padStart(2,'0');
+   const mm = String(now.getMinutes()).padStart(2,'0');
+   if(badge) badge.textContent = `☁️ En nube · ${hh}:${mm}`;
+   if(cloudKpi) cloudKpi.textContent = '✓ Sincronizado';
+   const lastSyncEl = document.getElementById('kpiLastSyncTime');
+   if(lastSyncEl) lastSyncEl.textContent = `Última sincr.: hoy a las ${hh}:${mm}`;
+   renderPatientsDashboardList();
+   if(showNotification){
+    alert(`✓ Sincronización completada con tu nube privada en GitHub.\nPacientes almacenados: ${Object.keys(patientsDb.patients).length}`);
+   }
+  } catch(err){
+   console.warn('Error de sincronización con GitHub:', err);
+   if(badge) badge.textContent = '✓ Guardado local (sin red)';
+   if(cloudKpi) cloudKpi.textContent = 'Modo local';
+   if(showNotification){
+    alert('Los datos quedaron guardados en tu dispositivo, pero no se pudo conectar con GitHub en este momento. Verifica tu conexión a internet.');
+   }
+  } finally {
+   isSyncingCloud = false;
+   if(syncBtn){ syncBtn.disabled = false; syncBtn.textContent = '🔄 Sincronizar Nube'; }
+  }
+ };
+
+ window.saveCurrentPatientAndSync = async function(notify = true){
+  const saved = saveCurrentPatientToLocalDb();
+  if(!saved){
+   alert('Ingresa al menos el nombre o número de documento del paciente en «01 · Identificación» antes de guardar el expediente.');
+   window.tab('identificacion');
+   return;
+  }
+  await syncPatientsWithGitHubCloud(notify);
+ };
+
+ // Crear un nuevo expediente de paciente limpio sin perder los anteriores
+ window.startNewPatientRecord = function(fromDashboard = false){
+  saveCurrentPatientToLocalDb();
+  currentPatientId = 'pac_' + Date.now();
+  localStorage.setItem(ACTIVE_PATIENT_ID_KEY, currentPatientId);
+
+  document.querySelectorAll('main > .panel input, main > .panel textarea, main > .panel select').forEach(x=>{
+   if(x.type==='checkbox'||x.type==='radio') x.checked = false;
+   else if(x.id==='edad') x.value = '';
+   else if(x.tagName==='SELECT') x.selectedIndex = 0;
+   else if(x.defaultValue && (x.value.includes('Karen Liseth') || x.value.includes('Fonoaudióloga') || x.value.includes('08261') || x.value.includes('Ismael Perdomo') || x.value.includes('Villahermosa'))){
+    x.value = x.defaultValue;
+   } else x.value = '';
+  });
+  document.querySelectorAll('.touch-signature-img').forEach(img=>img.remove());
+  window.selectedClinicalInstruments = [];
+  if(typeof renderSelectedInstruments==='function') renderSelectedInstruments();
+  if(typeof syncInstrumentSummaries==='function') syncInstrumentSummaries();
+  const evList = document.getElementById('evolutionList');
+  if(evList){ evList.innerHTML = ''; if(typeof addEvolution==='function') addEvolution(); }
+  if(typeof updatePediatricFields==='function') updatePediatricFields();
+  if(typeof applyClinicalSelection==='function'){
+   applyClinicalSelection('tamizaje');
+   applyClinicalSelection('evaluacion');
+  }
+  if(typeof window.updateLivePatientContextAndProgress==='function') window.updateLivePatientContextAndProgress();
+  if(fromDashboard) closePatientsDashboard();
+  window.tab('identificacion');
+  const firstInput = document.querySelector('#identificacion [data-share="nombre"]');
+  if(firstInput) setTimeout(()=>firstInput.focus(), 120);
+ };
+
+ // Cargar un paciente desde el Dashboard hacia los 9 módulos
+ window.loadPatientFromDashboard = function(pid, targetTab = 'identificacion', addNewEvo = false){
+  saveCurrentPatientToLocalDb();
+  const pat = patientsDb.patients[pid];
+  if(!pat || !pat.recordState) return;
+  currentPatientId = pid;
+  localStorage.setItem(ACTIVE_PATIENT_ID_KEY, pid);
+  if(typeof window.applyClinicalRecordState === 'function'){
+   window.applyClinicalRecordState(pat.recordState);
+  }
+  closePatientsDashboard();
+  window.tab(targetTab);
+  if(addNewEvo && targetTab === 'evoluciones' && typeof addEvolution === 'function'){
+   addEvolution();
+   const list = document.getElementById('evolutionList');
+   if(list?.lastElementChild) list.lastElementChild.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+ };
+
+ // Imprimir un documento específico de un paciente directamente desde el Dashboard
+ window.printPatientDocumentFromDashboard = function(pid, moduleOrAll){
+  const pat = patientsDb.patients[pid];
+  if(!pat || !pat.recordState) return;
+  currentPatientId = pid;
+  localStorage.setItem(ACTIVE_PATIENT_ID_KEY, pid);
+  if(typeof window.applyClinicalRecordState === 'function'){
+   window.applyClinicalRecordState(pat.recordState);
+  }
+  closePatientsDashboard();
+  if(moduleOrAll === 'all'){
+   setTimeout(()=>printAll(), 180);
+  } else {
+   window.tab(moduleOrAll);
+   setTimeout(()=>prep(moduleOrAll), 180);
+  }
+ };
+
+ window.deletePatientFromDashboard = async function(pid){
+  const pat = patientsDb.patients[pid];
+  if(!pat) return;
+  if(!confirm(`¿Eliminar definitivamente el expediente de «${pat.name}» (${pat.doc || 'Sin documento'})?`)) return;
+  delete patientsDb.patients[pid];
+  if(currentPatientId === pid) currentPatientId = '';
+  saveLocalPatientsDb();
+  renderPatientsDashboardList();
+  if(githubToken) await syncPatientsWithGitHubCloud(false);
+ };
+
+ window.togglePatientPdfMenu = function(pid){
+  const menu = document.getElementById('pdf-menu-' + pid);
+  if(menu) menu.hidden = !menu.hidden;
+ };
+
+ window.setPatientListFilter = function(filter){
+  currentFilter = filter;
+  document.querySelectorAll('#patientFilterPills .filter-pill').forEach(btn=>{
+   btn.classList.toggle('active', btn.dataset.filter === filter);
+  });
+  renderPatientsDashboardList();
+ };
+
+ // Renderizar el listado de pacientes y sus documentos en el Dashboard
+ window.renderPatientsDashboardList = function(){
+  updatePatientCountBadge();
+  const container = document.getElementById('patientsGridContainer');
+  if(!container) return;
+
+  const allPatients = Object.values(patientsDb.patients || {}).sort((a,b)=> new Date(b.updatedAt||0) - new Date(a.updatedAt||0));
+  const pedCount = allPatients.filter(p=>p.profile==='pediatric').length;
+  const adultCount = allPatients.filter(p=>p.profile==='adult').length;
+  const totalEvos = allPatients.reduce((acc,p)=> acc + (p.evoCount || 0), 0);
+
+  const setKpi = (id, v) => { const el = document.getElementById(id); if(el) el.textContent = v; };
+  setKpi('kpiTotalPatients', String(allPatients.length));
+  setKpi('kpiPediatricAdult', `${pedCount} / ${adultCount}`);
+  setKpi('kpiTotalEvolutions', String(totalEvos));
+
+  const q = (document.getElementById('patientSearchInput')?.value || '').trim().toLocaleLowerCase('es');
+  const filtered = allPatients.filter(p => {
+   if(currentFilter === 'pediatric' && p.profile !== 'pediatric') return false;
+   if(currentFilter === 'adult' && p.profile !== 'adult') return false;
+   if(currentFilter === 'evolutions' && !(p.evoCount > 0)) return false;
+   if(!q) return true;
+   const hay = `${p.name} ${p.type} ${p.doc} ${p.eps} ${p.ageText}`.toLocaleLowerCase('es');
+   return hay.includes(q);
+  });
+
+  if(!filtered.length){
+   container.innerHTML = `
+    <div class="empty-patients-state">
+     <h3>${allPatients.length ? 'No hay pacientes que coincidan con tu búsqueda' : 'Aún no tienes pacientes guardados'}</h3>
+     <p>${allPatients.length ? 'Prueba con otro nombre, documento o filtro.' : 'Crea tu primer expediente clínico o sincroniza con la nube para ver tus pacientes y sus documentos.'}</p>
+     <button class="btn primary" onclick="startNewPatientRecord(true)" type="button" style="margin-top:10px">➕ Crear primer paciente</button>
+    </div>`;
+   return;
+  }
+
+  const allModulesMeta = [
+   { id: 'identificacion', short: '01 Identificación' },
+   { id: 'consentimiento', short: '02 Consentimiento' },
+   { id: 'anamnesis', short: '03 Anamnesis' },
+   { id: 'catalogo', short: '04 Catálogo' },
+   { id: 'tamizaje', short: '05 Tamizaje' },
+   { id: 'evaluacion', short: '06 Evaluación' },
+   { id: 'plan', short: '07 Plan' }
+  ];
+
+  container.innerHTML = filtered.map(p => {
+   const initials = (p.name || 'P').split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join('') || 'P';
+   const profileLabel = p.profile === 'pediatric' ? 'Pediátrico' : p.profile === 'adult' ? 'Adulto' : 'General';
+   const doneIds = new Set((p.completedModules || []).map(m => m.id));
+   const dateStr = p.updatedAt ? new Date(p.updatedAt).toLocaleString('es-CO', { dateStyle: 'medium', timeStyle: 'short' }) : '—';
+   const isCurrent = p.id === currentPatientId;
+
+   const chipsHtml = allModulesMeta.map(m => {
+    const isDone = doneIds.has(m.id);
+    return `<button type="button" class="pc-doc-chip ${isDone?'done':''}" onclick="loadPatientFromDashboard('${p.id}','${m.id}')" title="Abrir ${m.short}">${isDone?'✓':'○'} ${m.short}</button>`;
+   }).join('') + `<button type="button" class="pc-doc-chip ${p.evoCount>0?'done':''}" onclick="loadPatientFromDashboard('${p.id}','evoluciones')" title="Ver evoluciones del paciente">${p.evoCount>0?'✓':'○'} 08 Evoluciones (${p.evoCount||0})</button>`;
+
+   return `
+    <article class="patient-card ${isCurrent?'current-active-patient':''}">
+     <div>
+      <div class="pc-top">
+       <div class="pc-avatar">${escapeAttr(initials)}</div>
+       <div class="pc-info">
+        <h3>${escapeAttr(p.name)} ${isCurrent?'<span class="pc-badge" style="background:#ccfbf1;color:#0f766e">Activo</span>':''}</h3>
+        <div class="pc-meta">
+         <span>🪪 ${escapeAttr([p.type, p.doc].filter(Boolean).join(' ') || 'Sin documento')}</span>
+         <span>🎂 ${escapeAttr(p.ageText || 'Edad no reg.')}</span>
+         <span class="pc-badge ${p.profile||'neutral'}">${profileLabel}</span>
+        </div>
+        <div class="pc-meta" style="margin-top:4px">
+         <span>🏥 ${escapeAttr(p.eps || 'EPS no registrada')}</span>
+         <span>🕒 ${escapeAttr(dateStr)}</span>
+        </div>
+       </div>
+      </div>
+
+      <div class="pc-docs-section" style="margin-top:12px">
+       <div class="pc-docs-title">
+        <span>Documentos y módulos del expediente</span>
+        <span>${doneIds.size + (p.evoCount>0?1:0)} / 8 con datos</span>
+       </div>
+       <div class="pc-doc-chips">${chipsHtml}</div>
+      </div>
+
+      <div class="pc-pdf-menu" hidden id="pdf-menu-${p.id}">
+       <strong>Selecciona el documento a imprimir o guardar como PDF:</strong>
+       <div class="pc-pdf-grid">
+        <button type="button" onclick="printPatientDocumentFromDashboard('${p.id}','all')">📄 Historia Consolidada</button>
+        <button type="button" onclick="printPatientDocumentFromDashboard('${p.id}','consentimiento')">✍️ Consentimiento Informado</button>
+        <button type="button" onclick="printPatientDocumentFromDashboard('${p.id}','anamnesis')">📋 Anamnesis</button>
+        <button type="button" onclick="printPatientDocumentFromDashboard('${p.id}','tamizaje')">🩺 Informe de Tamizaje</button>
+        <button type="button" onclick="printPatientDocumentFromDashboard('${p.id}','evaluacion')">🧠 Informe de Evaluación</button>
+        <button type="button" onclick="printPatientDocumentFromDashboard('${p.id}','plan')">🎯 Diagnóstico y Plan</button>
+        <button type="button" onclick="printPatientDocumentFromDashboard('${p.id}','evoluciones')">📈 Evoluciones</button>
+        <button type="button" onclick="printPatientDocumentFromDashboard('${p.id}','identificacion')">🪪 Ficha Identificación</button>
+       </div>
+      </div>
+     </div>
+
+     <div class="pc-actions">
+      <button type="button" class="btn primary" onclick="loadPatientFromDashboard('${p.id}','identificacion')">📂 Abrir expediente</button>
+      <button type="button" class="btn" onclick="loadPatientFromDashboard('${p.id}','evoluciones',true)">➕ Evolución</button>
+      <button type="button" class="btn" onclick="togglePatientPdfMenu('${p.id}')">🖨️ Documentos PDF</button>
+      <button type="button" class="btn btn-subtle-danger btn-icon-only" onclick="deletePatientFromDashboard('${p.id}')" title="Eliminar paciente">🗑️</button>
+     </div>
+    </article>`;
+  }).join('');
+ };
+
+ window.openPatientsDashboard = function(){
+  saveCurrentPatientToLocalDb();
+  renderPatientsDashboardList();
+  const modal = document.getElementById('patientsDashboardModal');
+  if(modal) modal.hidden = false;
+ };
+
+ window.closePatientsDashboard = function(){
+  const modal = document.getElementById('patientsDashboardModal');
+  if(modal) modal.hidden = true;
+ };
+
+ window.exportAllPatientsDatabase = function(){
+  saveCurrentPatientToLocalDb();
+  const blob = new Blob([JSON.stringify(patientsDb, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Base_Clinica_Fonoaudiologia_${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 1500);
+ };
+
+ // Inicializar sesión y panel al cargar la página
+ document.addEventListener('DOMContentLoaded', () => {
+  updatePatientCountBadge();
+  const savedToken = localStorage.getItem(SESSION_TOKEN_KEY) || sessionStorage.getItem(SESSION_TOKEN_KEY);
+  if(savedToken){
+   githubToken = savedToken;
+   document.getElementById('clinicalLoginOverlay').hidden = true;
+   setTimeout(()=>syncPatientsWithGitHubCloud(false), 600);
+  } else {
+   document.getElementById('clinicalLoginOverlay').hidden = false;
+  }
  });
 })();
 </script>
