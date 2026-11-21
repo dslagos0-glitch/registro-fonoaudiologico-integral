@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"/><meta name="referrer" content="no-referrer"/><meta name="theme-color" content="#0f2942"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/><meta name="apple-mobile-web-app-title" content="FonoRegistro"/><link rel="manifest" href="manifest.webmanifest"/><link rel="icon" type="image/svg+xml" href="icon.svg"/><link rel="apple-touch-icon" href="icon.svg"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/><title>Registro Fonoaudiológico Integral · V80</title>
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://lh3.googleusercontent.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com; frame-src 'self' https://fonoregistro-clinico.firebaseapp.com https://accounts.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"/><meta name="referrer" content="no-referrer"/><meta name="theme-color" content="#0f2942"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/><meta name="apple-mobile-web-app-title" content="FonoRegistro"/><link rel="manifest" href="manifest.webmanifest"/><link rel="icon" type="image/svg+xml" href="icon.svg"/><link rel="apple-touch-icon" href="icon.svg"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/><script defer src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script><script defer src="https://www.gstatic.com/firebasejs/11.6.0/firebase-auth-compat.js"></script><script defer src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script><title>Registro Fonoaudiológico Integral · V80</title>
 <style>
 :root{--n:#173d56;--t:#168b91;--p:#eaf4f5;--ink:#243746;--m:#647784;--l:#d7e1e6}*{box-sizing:border-box}body{margin:0;background:#f3f6f8;color:var(--ink);font:14px/1.45 'Segoe UI',Arial,sans-serif}.top{background:linear-gradient(110deg,#173d56,#21677a);color:white;padding:22px 28px}.top h1{margin:0;font-size:23px}.top p{margin:5px 0 0;color:#d8e9ef}.layout{max-width:1450px;margin:auto;display:grid;grid-template-columns:235px 1fr;gap:16px;padding:16px}.side,.panel{background:white;border:1px solid var(--l);border-radius:12px}.side{padding:12px;height:max-content;position:sticky;top:12px}.side b{display:block;padding:8px;color:var(--n)}nav{display:grid;gap:4px}nav button{border:0;background:none;text-align:left;padding:10px;border-radius:8px;color:#3c5361;cursor:pointer;font:inherit}nav button.active,nav button:hover{background:var(--p);color:var(--n);font-weight:700}.hint{border-top:1px solid var(--l);margin-top:12px;padding:12px 8px;color:var(--m);font-size:11px}.toolbar,.actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:12px}.btn{border:1px solid var(--l);background:white;color:var(--n);padding:9px 13px;border-radius:8px;cursor:pointer;font-weight:650}.primary{background:var(--t);color:white;border-color:var(--t)}.panel{display:none;padding:22px;margin-bottom:14px}.panel.active{display:block}.panel h2{margin:0 0 4px;color:var(--n);font-size:20px}.intro{color:var(--m);margin:0 0 18px}.sub{margin:21px 0 11px;padding:9px 11px;background:var(--p);border-left:4px solid var(--t);color:var(--n);font-weight:700}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.field{min-width:0}.full{grid-column:1/-1}label{display:block;font-size:12px;font-weight:650;color:#435967;margin:0 0 5px}input,select,textarea{width:100%;border:1px solid #cbd7dd;border-radius:7px;padding:9px 10px;background:white;color:var(--ink);font:inherit}textarea{min-height:80px;resize:vertical}textarea.big{min-height:135px}input:focus,select:focus,textarea:focus{outline:2px solid #b8dfe0;border-color:var(--t)}.checks{display:flex;flex-wrap:wrap;gap:8px 14px;padding:8px 10px;border:1px solid var(--l);border-radius:7px}.checks label{display:flex;align-items:center;gap:6px;font-weight:450;margin:0;font-size:13px}.checks input{width:auto}.note{background:#fff7e8;border:1px solid #efdbb6;padding:10px 12px;border-radius:8px;color:#72541f;font-size:12px;margin:12px 0}.area,.evolution{border:1px solid var(--l);border-radius:9px;padding:14px;margin:12px 0}.area h3,.evolution h3{margin:0 0 12px;color:var(--n);font-size:15px}.muted{color:var(--m);font-size:12px}.footer{text-align:center;color:var(--m);font-size:11px;padding:14px}.pediatric-section,.adult-section{display:none}.eval-hidden{display:none!important}.eval-selection{background:#f7fafb;border:1px solid var(--l);border-radius:9px;padding:14px;margin:14px 0}.eval-selection h3{margin:0 0 6px;color:var(--n);font-size:15px}.eval-selection .checks{background:#fff}.objective-bank{background:#f7fafb;border:1px solid var(--l);border-radius:9px;padding:14px;margin:14px 0}.objective-bank .grid{align-items:end}.objective-item{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.pediatric-protocol{break-inside:auto}.pediatric-protocol textarea{min-height:72px}.precursor-item{border:1px solid var(--l);border-radius:8px;padding:10px;break-inside:avoid}.precursor-detail{margin-top:8px}.precursor-detail[hidden]{display:none}.pediatric-section.visible,.adult-section.visible{display:block}
 .feed-group{display:none}
@@ -6840,7 +6840,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
    </div>
    <div>
     <h2 id="loginModalTitle">FonoRegistro · Acceso Clínico</h2>
-    <p id="loginModalSubtitle">Registro Fonoaudiológico Integral · Bóveda cifrada</p>
+    <p id="loginModalSubtitle">Nube segura Firebase · Sincronización PC, Tablet y Celular</p>
    </div>
   </div>
   <div class="login-clinician-box">
@@ -6851,60 +6851,66 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
    </div>
   </div>
 
-  <!-- Formulario de Inicio de Sesión (cuando el dispositivo ya está configurado) -->
-  <form id="clinicalLoginForm" onsubmit="handleClinicalLogin(event)">
-   <div class="login-error" hidden="" id="loginErrorBox"></div>
+  <div class="login-error" hidden="" id="loginErrorBox"></div>
+  <div id="loginInfoBox" hidden="" style="background:#ecfdf5;border:1px solid #6ee7b7;color:#065f46;padding:10px 12px;border-radius:10px;font-size:12.5px;margin-bottom:14px"></div>
+
+  <!-- Botón de acceso rápido con Google -->
+  <button class="btn login-submit-btn" id="btnGoogleSignIn" onclick="handleFirebaseGoogleLogin()" style="background:#ffffff;border:1.5px solid #cbd5e1;color:#0f2942;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px" type="button">
+   <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+   <span>Continuar con Google</span>
+  </button>
+
+  <div style="display:flex;align-items:center;gap:10px;margin:10px 0 14px;color:#94a3b8;font-size:12px">
+   <span style="flex:1;height:1px;background:#e2e8f0"></span>
+   <span>o con correo y contraseña</span>
+   <span style="flex:1;height:1px;background:#e2e8f0"></span>
+  </div>
+
+  <!-- Formulario de Inicio de Sesión con Correo y Contraseña -->
+  <form id="clinicalLoginForm" onsubmit="handleFirebaseEmailLogin(event)">
    <div class="login-field">
-    <label for="loginUsername">Usuario profesional</label>
-    <input autocomplete="username" id="loginUsername" placeholder="Ej. karen" required="" type="text" value="karen"/>
+    <label for="loginEmail">Correo electrónico profesional</label>
+    <input autocomplete="email" id="loginEmail" placeholder="tu-correo@ejemplo.com" required="" type="email"/>
    </div>
    <div class="login-field">
-    <label for="loginPassword">Contraseña clínica</label>
+    <label for="loginPassword">Contraseña</label>
     <div class="login-pass-wrap">
-     <input autocomplete="current-password" id="loginPassword" placeholder="Ingresa tu contraseña clínica" required="" type="password"/>
+     <input autocomplete="current-password" id="loginPassword" placeholder="Ingresa tu contraseña" required="" type="password"/>
      <button class="login-pass-toggle" onclick="const i=document.getElementById('loginPassword');i.type=i.type==='password'?'text':'password'" title="Mostrar / ocultar contraseña" type="button">👁️</button>
     </div>
    </div>
-   <button class="btn primary login-submit-btn" id="loginSubmitBtn" type="submit">🔓 Desbloquear sesión clínica</button>
-   <div style="margin-top:10px;text-align:center">
-    <button class="btn" onclick="switchLoginToSetupMode()" style="font-size:12px;padding:6px 10px" type="button">⚙️ Configurar / actualizar contraseña o token GitHub</button>
+   <button class="btn primary login-submit-btn" id="loginSubmitBtn" type="submit">🔓 Iniciar sesión</button>
+   <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:12px">
+    <button class="btn" onclick="switchAuthMode('register')" style="font-size:12px;padding:6px 10px;flex:1" type="button">✨ Crear cuenta nueva</button>
+    <button class="btn" onclick="handleFirebasePasswordReset()" style="font-size:12px;padding:6px 10px;flex:1" type="button">🔑 Recuperar contraseña</button>
    </div>
   </form>
 
-  <!-- Formulario de Configuración Inicial Segura (sin claves API en el código fuente) -->
-  <form hidden="" id="clinicalSetupForm" onsubmit="handleClinicalVaultSetup(event)">
-   <div class="login-error" hidden="" id="setupErrorBox"></div>
+  <!-- Formulario de Registro de Cuenta Nueva -->
+  <form hidden="" id="clinicalRegisterForm" onsubmit="handleFirebaseEmailRegister(event)">
    <div class="login-field">
-    <label for="setupUsername">Usuario profesional</label>
-    <input autocomplete="username" id="setupUsername" placeholder="Ej. karen" required="" type="text" value="karen"/>
+    <label for="regEmail">Correo electrónico profesional</label>
+    <input autocomplete="email" id="regEmail" placeholder="tu-correo@ejemplo.com" required="" type="email"/>
    </div>
    <div class="login-field">
-    <label for="setupPassword">Crea una contraseña robusta (mín. 10 caracteres, mayúscula, minúscula, número y símbolo)</label>
+    <label for="regPassword">Crea una contraseña segura (mín. 10 caracteres, mayúscula, minúscula, número y símbolo)</label>
     <div class="login-pass-wrap">
-     <input autocomplete="new-password" id="setupPassword" placeholder="Ej. Fono#Clinica2026!" required="" type="password"/>
-     <button class="login-pass-toggle" onclick="const i=document.getElementById('setupPassword');i.type=i.type==='password'?'text':'password'" title="Mostrar / ocultar" type="button">👁️</button>
+     <input autocomplete="new-password" id="regPassword" placeholder="Ej. Fono#Clinica2026!" required="" type="password"/>
+     <button class="login-pass-toggle" onclick="const i=document.getElementById('regPassword');i.type=i.type==='password'?'text':'password'" title="Mostrar / ocultar" type="button">👁️</button>
     </div>
    </div>
    <div class="login-field">
-    <label for="setupPasswordConfirm">Confirmar contraseña</label>
-    <input autocomplete="new-password" id="setupPasswordConfirm" placeholder="Repite tu contraseña" required="" type="password"/>
+    <label for="regPasswordConfirm">Confirmar contraseña</label>
+    <input autocomplete="new-password" id="regPasswordConfirm" placeholder="Repite tu contraseña" required="" type="password"/>
    </div>
-   <div class="login-field">
-    <label for="setupGithubToken">Token personal de GitHub (opcional para nube privada — Fine-Grained solo sobre <code>fono-pacientes-privado</code>)</label>
-    <div class="login-pass-wrap">
-     <input autocomplete="off" id="setupGithubToken" placeholder="github_pat_... (déjalo vacío para modo 100 % local)" type="password"/>
-     <button class="login-pass-toggle" onclick="const i=document.getElementById('setupGithubToken');i.type=i.type==='password'?'text':'password'" title="Mostrar / ocultar token" type="button">👁️</button>
-    </div>
-    <small style="display:block;color:#64748b;margin-top:4px;font-size:11px;line-height:1.35">Tu token nunca se incluye en el código público ni se guarda en texto plano: se cifra localmente con AES-256-GCM y solo vive en memoria durante la sesión activa.</small>
-   </div>
-   <button class="btn primary login-submit-btn" id="setupSubmitBtn" type="submit">🛡️ Guardar bóveda cifrada e ingresar</button>
-   <div id="setupCancelWrap" hidden="" style="margin-top:10px;text-align:center">
-    <button class="btn" onclick="switchSetupToLoginMode()" style="font-size:12px;padding:6px 10px" type="button">← Volver al inicio de sesión</button>
+   <button class="btn primary login-submit-btn" id="regSubmitBtn" type="submit">🛡️ Crear cuenta segura e ingresar</button>
+   <div style="margin-top:10px;text-align:center">
+    <button class="btn" onclick="switchAuthMode('login')" style="font-size:12px;padding:6px 10px" type="button">← Ya tengo cuenta, iniciar sesión</button>
    </div>
   </form>
 
   <div class="login-footer-note">
-   Protegido con <strong>PBKDF2-SHA-256 (310.000 iteraciones)</strong>, cifrado local <strong>AES-256-GCM</strong>, bloqueo automático por intentos fallidos e inactividad (30 min) y sin claves de API embebidas en el código fuente.
+   Protegido con <strong>Firebase Authentication</strong> (contraseñas con hash en servidor y enlaces de recuperación con caducidad) y <strong>Cloud Firestore</strong> con reglas estrictas de aislamiento por usuario.
   </div>
  </div>
 </div>
@@ -6915,11 +6921,11 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
   <div class="dashboard-header">
    <div>
     <h2 id="dashTitle">🗂️ Mis Pacientes y Documentos Clínicos</h2>
-    <p id="dashCloudStatusText">Nube privada: GitHub (dslagos0-glitch/fono-pacientes-privado)</p>
+    <p id="dashCloudStatusText">Nube segura Firebase · Sincronización en tiempo real</p>
    </div>
    <div class="dashboard-header-actions">
     <button class="btn top-nav-btn" id="btnToggleSecurityLog" onclick="toggleSecurityAuditPanel()" type="button">🛡️ Auditoría de Seguridad</button>
-    <button class="btn top-nav-btn" id="btnSyncCloudNow" onclick="syncPatientsWithGitHubCloud(true)" type="button">🔄 Sincronizar Nube</button>
+    <button class="btn top-nav-btn" id="btnSyncCloudNow" onclick="syncPatientsWithFirebaseCloud(true)" type="button">🔄 Sincronizar Nube</button>
     <button class="btn top-cloud-btn" onclick="startNewPatientRecord(true)" type="button">➕ Nuevo Paciente</button>
     <button class="btn top-nav-btn" onclick="closePatientsDashboard()" type="button">✕ Volver al expediente activo</button>
    </div>
@@ -6944,17 +6950,14 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
     <div class="kpi-card">
      <span>Respaldo en la Nube</span>
      <strong id="kpiCloudState" style="font-size:16px;margin-top:8px">Conectado</strong>
-     <small id="kpiLastSyncTime">Repositorio privado activo</small>
+     <small id="kpiLastSyncTime">Cloud Firestore activo</small>
     </div>
    </div>
 
    <div id="securityAuditPanel" hidden="" style="background:#fff;border:1px solid #cbd5e1;border-left:4px solid #0f2942;border-radius:12px;padding:14px 16px;margin-bottom:16px">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px">
-     <strong style="color:#0f2942;font-size:14px">🛡️ Registro de Auditoría y Actividades Sospechosas (Últimos 50 eventos)</strong>
-     <div style="display:flex;gap:6px">
-      <button class="btn" onclick="openVaultReconfigureFromDashboard()" style="font-size:12px;padding:5px 10px" type="button">🔑 Cambiar clave / token</button>
-      <button class="btn" onclick="toggleSecurityAuditPanel()" style="font-size:12px;padding:5px 10px" type="button">Cerrar</button>
-     </div>
+     <strong style="color:#0f2942;font-size:14px">🛡️ Registro de Auditoría Inmutable (Firestore + Local · Últimos 50 eventos)</strong>
+     <button class="btn" onclick="toggleSecurityAuditPanel()" style="font-size:12px;padding:5px 10px" type="button">Cerrar</button>
     </div>
     <div id="securityAuditList" style="max-height:200px;overflow-y:auto;font-size:12px;font-family:ui-monospace,Consolas,monospace;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px"></div>
    </div>
@@ -6982,7 +6985,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
 
 <script>
 (function(){
- // 0. Seguridad en producción: forzar HTTPS y desactivar mensajes de depuración en consola
+ // 0. Seguridad en producción: forzar HTTPS y silenciar depuración en consola
  const IS_LOCAL_DEV = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
  if(!IS_LOCAL_DEV && location.protocol === 'http:'){
   location.replace('https://' + location.host + location.pathname + location.search);
@@ -6994,27 +6997,34 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
   console.info = function(){};
  }
 
- // Limpiar posibles tokens heredados de versiones anteriores en texto plano
+ // Limpiar posibles tokens legados de versiones anteriores
  try {
   localStorage.removeItem('fono_clinical_github_token_v79');
   sessionStorage.removeItem('fono_clinical_github_token_v79');
  } catch(e){}
 
+ // Configuración pública del proyecto Firebase (la seguridad se aplica en servidor con Auth + firestore.rules)
+ const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAndN9RBa7dJhNn9uOxM29ymXHJPPN8Lxg",
+  authDomain: "fonoregistro-clinico.firebaseapp.com",
+  projectId: "fonoregistro-clinico",
+  storageBucket: "fonoregistro-clinico.firebasestorage.app",
+  messagingSenderId: "807960053082",
+  appId: "1:807960053082:web:2ea1b23134796aae1d9f63"
+ };
+
  const DB_LOCAL_KEY = 'fono_patients_multi_db_v79';
  const ACTIVE_PATIENT_ID_KEY = 'fono_active_patient_id_v79';
- const VAULT_STORAGE_KEY = 'fono_secure_vault_v80';
  const RATE_LIMIT_KEY = 'fono_login_rate_limit_v80';
  const AUDIT_LOG_KEY = 'fono_security_audit_v80';
- const GITHUB_OWNER = 'dslagos0-glitch';
- const GITHUB_PRIVATE_REPO = 'fono-pacientes-privado';
- const GITHUB_DB_PATH = 'db/patients_database.json';
- const PBKDF2_ITERATIONS = 310000;
  const INACTIVITY_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutos
- const MANUAL_SYNC_COOLDOWN_MS = 10000; // Límite de peticiones: 10 s entre sincronizaciones manuales
+ const MANUAL_SYNC_COOLDOWN_MS = 10000; // 10 s entre sincronizaciones manuales
 
- // El token de GitHub vive EXCLUSIVAMENTE en memoria durante la sesión activa (nunca en código fuente ni en texto plano)
- let githubToken = null;
- let isSessionAuthenticated = false;
+ let fbApp = null;
+ let fbAuth = null;
+ let fbDb = null;
+ let currentUser = null;
+ let unsubscribePatients = null;
  let currentPatientId = localStorage.getItem(ACTIVE_PATIENT_ID_KEY) || '';
  let patientsDb = loadLocalPatientsDb();
  let currentFilter = 'all';
@@ -7024,15 +7034,71 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
  let lastManualSyncTs = 0;
  let inactivityTimer = null;
 
- // Registro de auditoría de seguridad (actividades sospechosas y accesos)
+ function initFirebaseServices(){
+  if(fbApp) return true;
+  if(typeof window.firebase === 'undefined') return false;
+  try {
+   fbApp = firebase.apps.length ? firebase.app() : firebase.initializeApp(FIREBASE_CONFIG);
+   fbAuth = firebase.auth();
+   fbDb = firebase.firestore();
+   // Habilitar persistencia offline de Firestore si el navegador lo soporta
+   fbDb.enablePersistence({ synchronizeTabs: true }).catch(()=>{});
+   return true;
+  } catch(e){
+   return false;
+  }
+ }
+
+ function showAuthMessage(msg, isError = true){
+  const errBox = document.getElementById('loginErrorBox');
+  const infoBox = document.getElementById('loginInfoBox');
+  if(errBox) errBox.hidden = true;
+  if(infoBox) infoBox.hidden = true;
+  if(isError && errBox){ errBox.textContent = msg; errBox.hidden = false; }
+  if(!isError && infoBox){ infoBox.textContent = msg; infoBox.hidden = false; }
+ }
+
+ window.switchAuthMode = function(mode){
+  const loginForm = document.getElementById('clinicalLoginForm');
+  const regForm = document.getElementById('clinicalRegisterForm');
+  const title = document.getElementById('loginModalTitle');
+  const errBox = document.getElementById('loginErrorBox');
+  const infoBox = document.getElementById('loginInfoBox');
+  if(errBox) errBox.hidden = true;
+  if(infoBox) infoBox.hidden = true;
+  if(mode === 'register'){
+   if(loginForm) loginForm.hidden = true;
+   if(regForm) regForm.hidden = false;
+   if(title) title.textContent = 'Crear Cuenta Clínica Segura';
+  } else {
+   if(regForm) regForm.hidden = true;
+   if(loginForm) loginForm.hidden = false;
+   if(title) title.textContent = 'FonoRegistro · Acceso Clínico';
+  }
+ };
+
+ // Registro de auditoría inmutable (Local + Cloud Firestore clinicians/{uid}/auditLogs)
  window.logSecurityEvent = function(code, detail = ''){
+  const entry = {
+   ts: new Date().toISOString(),
+   code: String(code).slice(0, 60),
+   detail: String(detail).slice(0, 250)
+  };
   try {
    const raw = localStorage.getItem(AUDIT_LOG_KEY);
    const list = raw ? JSON.parse(raw) : [];
-   list.unshift({ ts: new Date().toISOString(), code: String(code), detail: String(detail).slice(0, 180) });
+   list.unshift(entry);
    localStorage.setItem(AUDIT_LOG_KEY, JSON.stringify(list.slice(0, 50)));
    renderSecurityAuditList();
   } catch(e){}
+  if(fbDb && currentUser){
+   fbDb.collection('clinicians').doc(currentUser.uid).collection('auditLogs').add({
+    ts: entry.ts,
+    code: entry.code,
+    detail: entry.detail,
+    ownerUid: currentUser.uid
+   }).catch(()=>{});
+  }
  };
 
  function renderSecurityAuditList(){
@@ -7060,98 +7126,49 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
   if(!panel.hidden) renderSecurityAuditList();
  };
 
- window.openVaultReconfigureFromDashboard = function(){
-  closePatientsDashboard();
-  document.getElementById('clinicalLoginOverlay').hidden = false;
-  switchLoginToSetupMode();
- };
-
  // Bloqueo automático por inactividad (30 minutos)
  function resetInactivityTimer(){
-  if(!isSessionAuthenticated) return;
+  if(!currentUser) return;
   clearTimeout(inactivityTimer);
   inactivityTimer = setTimeout(()=>{
-   if(!isSessionAuthenticated) return;
+   if(!currentUser || !fbAuth) return;
    saveCurrentPatientToLocalDb();
-   githubToken = null;
-   isSessionAuthenticated = false;
-   window.logSecurityEvent('INACTIVITY_LOCK', 'Sesión bloqueada automáticamente tras 30 minutos de inactividad');
-   const passEl = document.getElementById('loginPassword');
-   if(passEl) passEl.value = '';
-   document.getElementById('patientsDashboardModal').hidden = true;
-   document.getElementById('clinicalLoginOverlay').hidden = false;
-   switchSetupToLoginMode();
+   window.logSecurityEvent('INACTIVITY_LOCK', 'Sesión cerrada automáticamente tras 30 minutos de inactividad');
+   fbAuth.signOut().catch(()=>{});
   }, INACTIVITY_TIMEOUT_MS);
  }
  ['pointerdown','keydown','touchstart'].forEach(evt => document.addEventListener(evt, resetInactivityTimer, { passive: true }));
 
- // Utilidades criptográficas (Web Crypto API: PBKDF2-SHA-256 + AES-256-GCM)
- function bytesToB64(bytes){
-  let bin = '';
-  for(let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
-  return btoa(bin);
- }
- function b64ToBytes(b64){
-  const bin = atob(b64);
-  const out = new Uint8Array(bin.length);
-  for(let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
-  return out;
- }
- function constantTimeEqual(a, b){
-  if(a.length !== b.length) return false;
-  let diff = 0;
-  for(let i = 0; i < a.length; i++) diff |= (a.charCodeAt(i) ^ b.charCodeAt(i));
-  return diff === 0;
- }
- async function derivePasswordHashB64(password, saltBytes){
-  const enc = new TextEncoder();
-  const keyMat = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits']);
-  const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: saltBytes, iterations: PBKDF2_ITERATIONS, hash: 'SHA-256' }, keyMat, 256);
-  return bytesToB64(new Uint8Array(bits));
- }
- async function deriveAesGcmKey(password, saltBytes, usage){
-  const enc = new TextEncoder();
-  const keyMat = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
-  return crypto.subtle.deriveKey(
-   { name: 'PBKDF2', salt: saltBytes, iterations: PBKDF2_ITERATIONS, hash: 'SHA-256' },
-   keyMat,
-   { name: 'AES-GCM', length: 256 },
-   false,
-   usage
-  );
- }
- async function encryptTokenForDevice(token, password){
-  const salt = crypto.getRandomValues(new Uint8Array(16));
-  const iv = crypto.getRandomValues(new Uint8Array(12));
-  const key = await deriveAesGcmKey(password, salt, ['encrypt']);
-  const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, new TextEncoder().encode(token));
-  return { saltB64: bytesToB64(salt), ivB64: bytesToB64(iv), ctB64: bytesToB64(new Uint8Array(ct)) };
- }
- async function decryptTokenFromDevice(encObj, password){
-  const salt = b64ToBytes(encObj.saltB64);
-  const iv = b64ToBytes(encObj.ivB64);
-  const ct = b64ToBytes(encObj.ctB64);
-  const key = await deriveAesGcmKey(password, salt, ['decrypt']);
-  const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct);
-  return new TextDecoder().decode(pt).trim();
- }
-
- function getStoredVault(){
-  try {
-   const raw = localStorage.getItem(VAULT_STORAGE_KEY);
-   if(!raw) return null;
-   const v = JSON.parse(raw);
-   return (v && v.username && v.passSaltB64 && v.passHashB64) ? v : null;
-  } catch(e){ return null; }
- }
-
- // Control de tasa / bloqueo contra fuerza bruta en el inicio de sesión
+ // Control de tasa / bloqueo contra fuerza bruta
  function getRateLimitState(){
   try { return JSON.parse(localStorage.getItem(RATE_LIMIT_KEY) || '{"fails":0,"lockUntil":0}'); }
   catch(e){ return { fails: 0, lockUntil: 0 }; }
  }
  function saveRateLimitState(st){
   try { localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(st)); } catch(e){}
+ }
+ function checkLoginRateLimit(){
+  const rl = getRateLimitState();
+  if(rl.lockUntil && Date.now() < rl.lockUntil){
+   const mins = Math.ceil((rl.lockUntil - Date.now()) / 60000);
+   showAuthMessage(`Acceso bloqueado temporalmente por intentos fallidos. Intenta en ${mins} minuto(s).`, true);
+   return false;
+  }
+  return true;
+ }
+ function recordLoginFailure(email){
+  const rl = getRateLimitState();
+  rl.fails = (rl.fails || 0) + 1;
+  if(rl.fails >= 10){
+   rl.lockUntil = Date.now() + 15 * 60 * 1000;
+   window.logSecurityEvent('LOCKOUT_TRIGGERED', `Bloqueo 15 min tras ${rl.fails} intentos fallidos (${email})`);
+  } else if(rl.fails >= 5){
+   rl.lockUntil = Date.now() + 5 * 60 * 1000;
+   window.logSecurityEvent('LOCKOUT_TRIGGERED', `Bloqueo 5 min tras ${rl.fails} intentos fallidos (${email})`);
+  } else {
+   window.logSecurityEvent('LOGIN_FAIL', `Intento fallido #${rl.fails} (${email})`);
+  }
+  saveRateLimitState(rl);
  }
 
  function validateStrongPassword(pw){
@@ -7163,100 +7180,116 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
   return '';
  }
 
- window.switchLoginToSetupMode = function(){
-  const loginForm = document.getElementById('clinicalLoginForm');
-  const setupForm = document.getElementById('clinicalSetupForm');
-  const cancelWrap = document.getElementById('setupCancelWrap');
-  const title = document.getElementById('loginModalTitle');
-  const sub = document.getElementById('loginModalSubtitle');
-  if(loginForm) loginForm.hidden = true;
-  if(setupForm) setupForm.hidden = false;
-  if(cancelWrap) cancelWrap.hidden = !getStoredVault();
-  if(title) title.textContent = 'Configurar Bóveda Clínica Segura';
-  if(sub) sub.textContent = 'Crea tu contraseña con hash PBKDF2 y vincula tu nube privada';
- };
+ function mapFirebaseAuthError(code){
+  const map = {
+   'auth/invalid-credential': 'Correo o contraseña incorrectos.',
+   'auth/wrong-password': 'Contraseña incorrecta.',
+   'auth/user-not-found': 'No existe una cuenta registrada con ese correo.',
+   'auth/email-already-in-use': 'Este correo ya tiene una cuenta registrada. Inicia sesión o recupera tu contraseña.',
+   'auth/weak-password': 'La contraseña es demasiado débil.',
+   'auth/invalid-email': 'El formato del correo electrónico no es válido.',
+   'auth/too-many-requests': 'Demasiados intentos en el servidor. Espera unos minutos antes de reintentar.',
+   'auth/popup-closed-by-user': 'Se cerró la ventana de inicio de sesión con Google.',
+   'auth/unauthorized-domain': 'Este dominio aún no está autorizado en Firebase Console (Authentication → Dominios autorizados).'
+  };
+  return map[code] || 'No fue posible autenticar en este momento. Verifica tu conexión e intenta nuevamente.';
+ }
 
- window.switchSetupToLoginMode = function(){
-  const loginForm = document.getElementById('clinicalLoginForm');
-  const setupForm = document.getElementById('clinicalSetupForm');
-  const title = document.getElementById('loginModalTitle');
-  const sub = document.getElementById('loginModalSubtitle');
-  if(setupForm) setupForm.hidden = true;
-  if(loginForm) loginForm.hidden = false;
-  if(title) title.textContent = 'Acceso Clínico Seguro';
-  if(sub) sub.textContent = 'Bóveda cifrada sin claves embebidas en el navegador';
-  const vault = getStoredVault();
-  const userEl = document.getElementById('loginUsername');
-  if(vault && userEl) userEl.value = vault.username;
- };
-
- window.handleClinicalVaultSetup = async function(event){
-  event.preventDefault();
-  const errBox = document.getElementById('setupErrorBox');
-  const submitBtn = document.getElementById('setupSubmitBtn');
-  if(errBox) errBox.hidden = true;
-
-  const username = (document.getElementById('setupUsername')?.value || '').trim().toLowerCase();
-  const password = (document.getElementById('setupPassword')?.value || '').trim();
-  const confirmPw = (document.getElementById('setupPasswordConfirm')?.value || '').trim();
-  const rawToken = (document.getElementById('setupGithubToken')?.value || '').trim();
-
-  if(!username || username.length < 3){
-   if(errBox){ errBox.textContent = 'Ingresa un usuario profesional válido (mínimo 3 caracteres).'; errBox.hidden = false; }
-   return;
-  }
-  const strengthErr = validateStrongPassword(password);
-  if(strengthErr){
-   if(errBox){ errBox.textContent = strengthErr; errBox.hidden = false; }
-   return;
-  }
-  if(password !== confirmPw){
-   if(errBox){ errBox.textContent = 'Las contraseñas no coinciden.'; errBox.hidden = false; }
-   return;
-  }
-  if(rawToken && rawToken.length < 20){
-   if(errBox){ errBox.textContent = 'El token de GitHub parece incompleto. Déjalo vacío para modo local o pega un Fine-Grained PAT válido.'; errBox.hidden = false; }
-   return;
-  }
-
+ window.handleFirebaseGoogleLogin = async function(){
+  if(!initFirebaseServices()){ showAuthMessage('No se pudo cargar Firebase. Verifica tu conexión a internet.', true); return; }
+  if(!checkLoginRateLimit()) return;
+  const btn = document.getElementById('btnGoogleSignIn');
   try {
-   if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = '⏳ Cifrando bóveda (PBKDF2 + AES-GCM)…'; }
-   const passSalt = crypto.getRandomValues(new Uint8Array(16));
-   const passHashB64 = await derivePasswordHashB64(password, passSalt);
-   const encryptedToken = rawToken ? await encryptTokenForDevice(rawToken, password) : null;
-
-   const vaultObj = {
-    version: 'V80',
-    username,
-    passSaltB64: bytesToB64(passSalt),
-    passHashB64,
-    encryptedToken,
-    configuredAt: new Date().toISOString()
-   };
-   localStorage.setItem(VAULT_STORAGE_KEY, JSON.stringify(vaultObj));
+   if(btn) btn.disabled = true;
+   const provider = new firebase.auth.GoogleAuthProvider();
+   provider.setCustomParameters({ prompt: 'select_account' });
+   await fbAuth.signInWithPopup(provider);
    saveRateLimitState({ fails: 0, lockUntil: 0 });
-
-   githubToken = rawToken || null;
-   isSessionAuthenticated = true;
-   resetInactivityTimer();
-   window.logSecurityEvent('VAULT_CONFIGURED', `Bóveda configurada para «${username}» (${rawToken ? 'con nube cifrada' : 'modo local'})`);
-
-   document.getElementById('setupPassword').value = '';
-   document.getElementById('setupPasswordConfirm').value = '';
-   document.getElementById('setupGithubToken').value = '';
-   document.getElementById('clinicalLoginOverlay').hidden = true;
-
-   if(githubToken){
-    await syncPatientsWithGitHubCloud(false);
-   } else {
-    const badge = document.getElementById('autosaveBadge');
-    if(badge) badge.textContent = '✓ Modo local seguro';
-   }
   } catch(err){
-   if(errBox){ errBox.textContent = 'No se pudo inicializar el cifrado Web Crypto. Verifica que estés usando HTTPS.'; errBox.hidden = false; }
+   if(err && (err.code === 'auth/popup-blocked' || err.code === 'auth/operation-not-supported-in-this-environment')){
+    const provider = new firebase.auth.GoogleAuthProvider();
+    fbAuth.signInWithRedirect(provider).catch(()=>{});
+    return;
+   }
+   showAuthMessage(mapFirebaseAuthError(err?.code), true);
   } finally {
-   if(submitBtn){ submitBtn.disabled = false; submitBtn.textContent = '🛡️ Guardar bóveda cifrada e ingresar'; }
+   if(btn) btn.disabled = false;
   }
+ };
+
+ window.handleFirebaseEmailLogin = async function(event){
+  event.preventDefault();
+  if(!initFirebaseServices()){ showAuthMessage('No se pudo cargar Firebase. Verifica tu conexión a internet.', true); return; }
+  if(!checkLoginRateLimit()) return;
+  const email = (document.getElementById('loginEmail')?.value || '').trim();
+  const password = (document.getElementById('loginPassword')?.value || '');
+  const submitBtn = document.getElementById('loginSubmitBtn');
+  try {
+   if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = '⏳ Verificando en Firebase…'; }
+   await fbAuth.signInWithEmailAndPassword(email, password);
+   saveRateLimitState({ fails: 0, lockUntil: 0 });
+   document.getElementById('loginPassword').value = '';
+  } catch(err){
+   recordLoginFailure(email);
+   showAuthMessage(mapFirebaseAuthError(err?.code), true);
+  } finally {
+   if(submitBtn){ submitBtn.disabled = false; submitBtn.textContent = '🔓 Iniciar sesión'; }
+  }
+ };
+
+ window.handleFirebaseEmailRegister = async function(event){
+  event.preventDefault();
+  if(!initFirebaseServices()){ showAuthMessage('No se pudo cargar Firebase. Verifica tu conexión a internet.', true); return; }
+  const email = (document.getElementById('regEmail')?.value || '').trim();
+  const password = (document.getElementById('regPassword')?.value || '');
+  const confirmPw = (document.getElementById('regPasswordConfirm')?.value || '');
+  const submitBtn = document.getElementById('regSubmitBtn');
+  const strengthErr = validateStrongPassword(password);
+  if(strengthErr){ showAuthMessage(strengthErr, true); return; }
+  if(password !== confirmPw){ showAuthMessage('Las contraseñas no coinciden.', true); return; }
+  try {
+   if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = '⏳ Creando cuenta segura…'; }
+   await fbAuth.createUserWithEmailAndPassword(email, password);
+   saveRateLimitState({ fails: 0, lockUntil: 0 });
+   document.getElementById('regPassword').value = '';
+   document.getElementById('regPasswordConfirm').value = '';
+  } catch(err){
+   showAuthMessage(mapFirebaseAuthError(err?.code), true);
+  } finally {
+   if(submitBtn){ submitBtn.disabled = false; submitBtn.textContent = '🛡️ Crear cuenta segura e ingresar'; }
+  }
+ };
+
+ window.handleFirebasePasswordReset = async function(){
+  if(!initFirebaseServices()){ showAuthMessage('No se pudo cargar Firebase. Verifica tu conexión a internet.', true); return; }
+  const email = (document.getElementById('loginEmail')?.value || '').trim();
+  if(!email){
+   showAuthMessage('Escribe primero tu correo electrónico profesional arriba y luego pulsa «Recuperar contraseña».', true);
+   return;
+  }
+  try {
+   await fbAuth.sendPasswordResetEmail(email);
+   window.logSecurityEvent('PASSWORD_RESET_SENT', `Enlace de recuperación con caducidad enviado a ${email}`);
+   showAuthMessage(`Se envió un enlace seguro de recuperación (con caducidad automática) a ${email}. Revisa tu bandeja de entrada o spam.`, false);
+  } catch(err){
+   showAuthMessage(mapFirebaseAuthError(err?.code), true);
+  }
+ };
+
+ window.logoutClinicalSession = async function(){
+  if(!confirm('¿Cerrar tu sesión clínica en este dispositivo? Tus expedientes en Firebase permanecerán seguros.'))return;
+  saveCurrentPatientToLocalDb();
+  if(currentUser){
+   await pushSinglePatientToFirestore(patientsDb.patients[currentPatientId]).catch(()=>{});
+   window.logSecurityEvent('LOGOUT', `Sesión cerrada por ${currentUser.email || currentUser.uid}`);
+  }
+  clearTimeout(inactivityTimer);
+  if(unsubscribePatients){ unsubscribePatients(); unsubscribePatients = null; }
+  if(fbAuth){ await fbAuth.signOut().catch(()=>{}); }
+  currentUser = null;
+  document.getElementById('patientsDashboardModal').hidden = true;
+  document.getElementById('clinicalLoginOverlay').hidden = false;
+  switchAuthMode('login');
  };
 
  function loadLocalPatientsDb(){
@@ -7284,108 +7317,42 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
   if(badge) badge.textContent = String(count);
  }
 
- // Validar estrictamente IDs de paciente contra inyección XSS
  function safePatientId(id){
-  return /^[a-zA-Z0-9_-]{1,64}$/.test(String(id || '')) ? String(id) : 'pac_invalid';
+  return /^[a-zA-Z0-9_-]{1,64}$/.test(String(id || '')) ? String(id) : 'pac_' + Date.now();
  }
 
- // Iniciar sesión clínica con verificación PBKDF2-SHA-256 y protección contra fuerza bruta
- window.handleClinicalLogin = async function(event){
-  event.preventDefault();
-  const userEl = document.getElementById('loginUsername');
-  const passEl = document.getElementById('loginPassword');
-  const errBox = document.getElementById('loginErrorBox');
-  const submitBtn = document.getElementById('loginSubmitBtn');
+ // Construir documento que cumple 100% el esquema validado en servidor por firestore.rules
+ function buildFirestorePatientDoc(pat, uid){
+  const safeId = safePatientId(pat.id);
+  const validProfile = ['pediatric', 'adult', 'neutral'].includes(pat.profile) ? pat.profile : 'neutral';
+  const cleanRecordState = pat.recordState ? JSON.parse(JSON.stringify(pat.recordState)) : {};
+  const modulesList = Array.isArray(pat.completedModules) ? pat.completedModules.slice(0, 15).map(m => ({
+   id: String(m?.id || '').slice(0, 40),
+   label: String(m?.label || '').slice(0, 60)
+  })) : [];
+  return {
+   id: safeId,
+   ownerUid: String(uid),
+   name: String(pat.name || 'Paciente sin nombre').slice(0, 200),
+   type: String(pat.type || '').slice(0, 30),
+   doc: String(pat.doc || '').slice(0, 60),
+   dob: String(pat.dob || '').slice(0, 30),
+   ageText: String(pat.ageText || '').slice(0, 80),
+   eps: String(pat.eps || '').slice(0, 120),
+   profile: validProfile,
+   updatedAt: String(pat.updatedAt || new Date().toISOString()).slice(0, 50),
+   completedModules: modulesList,
+   evoCount: Math.max(0, Math.min(5000, Math.floor(Number(pat.evoCount) || 0))),
+   recordState: cleanRecordState
+  };
+ }
 
-  const vault = getStoredVault();
-  if(!vault){
-   switchLoginToSetupMode();
-   return;
-  }
+ async function pushSinglePatientToFirestore(pat){
+  if(!fbDb || !currentUser || !pat) return;
+  const payload = buildFirestorePatientDoc(pat, currentUser.uid);
+  await fbDb.collection('clinicians').doc(currentUser.uid).collection('patients').doc(payload.id).set(payload);
+ }
 
-  const rl = getRateLimitState();
-  const now = Date.now();
-  if(rl.lockUntil && now < rl.lockUntil){
-   const mins = Math.ceil((rl.lockUntil - now) / 60000);
-   if(errBox){
-    errBox.textContent = `Acceso bloqueado temporalmente por múltiples intentos fallidos. Intenta nuevamente en ${mins} minuto(s).`;
-    errBox.hidden = false;
-   }
-   return;
-  }
-
-  const username = (userEl?.value || '').trim().toLowerCase();
-  const password = (passEl?.value || '').trim();
-  if(errBox) errBox.hidden = true;
-
-  try {
-   if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = '⏳ Verificando hash PBKDF2…'; }
-   const saltBytes = b64ToBytes(vault.passSaltB64);
-   const candidateHash = await derivePasswordHashB64(password, saltBytes);
-   const userMatch = constantTimeEqual(username, String(vault.username).toLowerCase());
-   const passMatch = constantTimeEqual(candidateHash, vault.passHashB64);
-
-   if(!userMatch || !passMatch){
-    rl.fails = (rl.fails || 0) + 1;
-    if(rl.fails >= 10){
-     rl.lockUntil = Date.now() + 15 * 60 * 1000;
-     window.logSecurityEvent('LOCKOUT_TRIGGERED', `Bloqueo 15 min tras ${rl.fails} intentos fallidos (usuario: ${username})`);
-    } else if(rl.fails >= 5){
-     rl.lockUntil = Date.now() + 5 * 60 * 1000;
-     window.logSecurityEvent('LOCKOUT_TRIGGERED', `Bloqueo 5 min tras ${rl.fails} intentos fallidos (usuario: ${username})`);
-    } else {
-     window.logSecurityEvent('LOGIN_FAIL', `Intento fallido #${rl.fails} para usuario «${username}»`);
-    }
-    saveRateLimitState(rl);
-    throw new Error('Credenciales inválidas');
-   }
-
-   // Descifrar token en memoria si está configurado
-   githubToken = vault.encryptedToken ? await decryptTokenFromDevice(vault.encryptedToken, password) : null;
-   isSessionAuthenticated = true;
-   saveRateLimitState({ fails: 0, lockUntil: 0 });
-   resetInactivityTimer();
-   window.logSecurityEvent('LOGIN_OK', `Sesión iniciada correctamente por «${username}»`);
-
-   if(passEl) passEl.value = '';
-   document.getElementById('clinicalLoginOverlay').hidden = true;
-   if(githubToken){
-    await syncPatientsWithGitHubCloud(false);
-   } else {
-    const badge = document.getElementById('autosaveBadge');
-    if(badge) badge.textContent = '✓ Modo local seguro';
-   }
-
-   const currentData = typeof getPatientData==='function' ? getPatientData() : {};
-   const hasCurrentPatient = !!(currentData.name || currentData.doc);
-   if(!hasCurrentPatient && Object.keys(patientsDb.patients || {}).length > 0){
-    openPatientsDashboard();
-   }
-  } catch(err){
-   if(errBox){
-    errBox.textContent = 'Usuario o contraseña clínica incorrectos.';
-    errBox.hidden = false;
-   }
-  } finally {
-   if(submitBtn){ submitBtn.disabled = false; submitBtn.textContent = '🔓 Desbloquear sesión clínica'; }
-  }
- };
-
- window.logoutClinicalSession = function(){
-  if(!confirm('¿Cerrar tu sesión clínica en este dispositivo? El token en memoria se borrará de inmediato.'))return;
-  saveCurrentPatientToLocalDb();
-  githubToken = null;
-  isSessionAuthenticated = false;
-  clearTimeout(inactivityTimer);
-  window.logSecurityEvent('LOGOUT', 'Sesión cerrada manualmente por el profesional');
-  const passEl = document.getElementById('loginPassword');
-  if(passEl) passEl.value = '';
-  document.getElementById('patientsDashboardModal').hidden = true;
-  document.getElementById('clinicalLoginOverlay').hidden = false;
-  switchSetupToLoginMode();
- };
-
- // Evaluar qué módulos tienen información en un expediente serializado
  function summarizePatientRecord(state){
   const completedModules = [];
   const moduleNames = {
@@ -7415,7 +7382,6 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
   return { completedModules, evoCount };
  }
 
- // Guardar el expediente actualmente abierto dentro del diccionario multi-paciente local
  function saveCurrentPatientToLocalDb(){
   if(typeof window.collectClinicalRecordState !== 'function') return null;
   const p = typeof getPatientData==='function' ? getPatientData() : {};
@@ -7465,40 +7431,67 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
   clearTimeout(dbAutosaveTimer);
   dbAutosaveTimer = setTimeout(()=>{
    const saved = saveCurrentPatientToLocalDb();
-   if(saved && githubToken){
+   if(saved && currentUser){
     clearTimeout(cloudSyncTimer);
-    cloudSyncTimer = setTimeout(()=>syncPatientsWithGitHubCloud(false), 20000);
+    cloudSyncTimer = setTimeout(()=>{
+     pushSinglePatientToFirestore(saved).then(()=>{
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2,'0');
+      const mm = String(now.getMinutes()).padStart(2,'0');
+      const badge = document.getElementById('autosaveBadge');
+      if(badge) badge.textContent = `☁️ Firebase · ${hh}:${mm}`;
+     }).catch(()=>{});
+    }, 3500);
    }
   }, 700);
  };
 
- function utf8ToBase64(str){
-  const bytes = new TextEncoder().encode(str);
-  let bin = '';
-  const chunk = 0x8000;
-  for(let i=0; i<bytes.length; i+=chunk){
-   bin += String.fromCharCode.apply(null, bytes.subarray(i, i+chunk));
-  }
-  return btoa(bin);
+ // Suscripción en tiempo real a Cloud Firestore para sincronizar al instante PC, Tablet y Celular
+ function startRealtimeFirestoreSync(user){
+  if(unsubscribePatients){ unsubscribePatients(); unsubscribePatients = null; }
+  const colRef = fbDb.collection('clinicians').doc(user.uid).collection('patients');
+  unsubscribePatients = colRef.onSnapshot(snapshot => {
+   let changed = false;
+   const remoteIds = new Set();
+   snapshot.forEach(docSnap => {
+    const rPat = docSnap.data();
+    if(!rPat || !rPat.id) return;
+    const safeId = safePatientId(rPat.id);
+    remoteIds.add(safeId);
+    const lPat = patientsDb.patients[safeId];
+    if(!lPat || new Date(rPat.updatedAt || 0) >= new Date(lPat.updatedAt || 0)){
+     patientsDb.patients[safeId] = { ...rPat, id: safeId };
+     changed = true;
+    }
+   });
+   if(changed){
+    saveLocalPatientsDb();
+    renderPatientsDashboardList();
+   }
+   const now = new Date();
+   const hh = String(now.getHours()).padStart(2,'0');
+   const mm = String(now.getMinutes()).padStart(2,'0');
+   const badge = document.getElementById('autosaveBadge');
+   if(badge) badge.textContent = `☁️ Firebase · ${hh}:${mm}`;
+   const cloudKpi = document.getElementById('kpiCloudState');
+   if(cloudKpi) cloudKpi.textContent = '✓ En tiempo real';
+   const lastSyncEl = document.getElementById('kpiLastSyncTime');
+   if(lastSyncEl) lastSyncEl.textContent = `Sincronizado hoy ${hh}:${mm}`;
+  }, () => {
+   const badge = document.getElementById('autosaveBadge');
+   if(badge) badge.textContent = '✓ Modo local (sin red)';
+  });
  }
 
- function base64ToUtf8(b64){
-  const clean = b64.replace(/\s+/g, '');
-  const bin = atob(clean);
-  const bytes = new Uint8Array(bin.length);
-  for(let i=0; i<bin.length; i++) bytes[i] = bin.charCodeAt(i);
-  return new TextDecoder().decode(bytes);
- }
-
- // Sincronizar base de datos de pacientes con el repositorio privado de GitHub (con límite de peticiones)
- window.syncPatientsWithGitHubCloud = async function(showNotification = false){
+ // Sincronización completa bidireccional con Cloud Firestore
+ window.syncPatientsWithFirebaseCloud = async function(showNotification = false){
   saveCurrentPatientToLocalDb();
-  if(!githubToken){
-   if(showNotification) alert('No hay un token de GitHub configurado en tu bóveda local. Los datos están guardados de forma segura en este dispositivo. Puedes vincular tu token desde «🛡️ Auditoría de Seguridad → 🔑 Cambiar clave / token».');
+  if(!fbDb || !currentUser){
+   if(showNotification) alert('Inicia sesión primero para sincronizar con Firebase.');
    return;
   }
   if(showNotification && Date.now() - lastManualSyncTs < MANUAL_SYNC_COOLDOWN_MS){
-   alert('Espera unos segundos antes de solicitar otra sincronización manual (límite de peticiones activo).');
+   alert('Espera unos segundos antes de solicitar otra sincronización manual.');
    return;
   }
   if(showNotification) lastManualSyncTs = Date.now();
@@ -7507,91 +7500,63 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
 
   const badge = document.getElementById('autosaveBadge');
   const syncBtn = document.getElementById('btnSyncCloudNow');
-  const cloudKpi = document.getElementById('kpiCloudState');
-  if(badge) badge.textContent = '☁️ Sincronizando nube…';
+  if(badge) badge.textContent = '☁️ Sincronizando Firebase…';
   if(syncBtn){ syncBtn.disabled = true; syncBtn.textContent = '⏳ Sincronizando…'; }
 
-  const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_PRIVATE_REPO}/contents/${GITHUB_DB_PATH}`;
-  const headers = {
-   'Authorization': `Bearer ${githubToken}`,
-   'Accept': 'application/vnd.github+json',
-   'X-GitHub-Api-Version': '2022-11-28'
-  };
-
   try {
-   let existingSha = null;
-   const getResp = await fetch(apiUrl + '?t=' + Date.now(), { headers, cache: 'no-store' });
-   if(getResp.status === 401 || getResp.status === 403){
-    window.logSecurityEvent('CLOUD_AUTH_ERR', `GitHub rechazó el token (HTTP ${getResp.status})`);
-    throw new Error('HTTP ' + getResp.status);
-   }
-   if(getResp.status === 200){
-    const fileObj = await getResp.json();
-    existingSha = fileObj.sha;
-    let rawJson = '';
-    if(fileObj.content){
-     rawJson = base64ToUtf8(fileObj.content);
-    } else if(fileObj.download_url){
-     const dl = await fetch(fileObj.download_url, { cache: 'no-store' });
-     rawJson = await dl.text();
-    }
-    if(rawJson){
-     const remoteDb = JSON.parse(rawJson);
-     if(remoteDb && remoteDb.patients){
-      Object.entries(remoteDb.patients).forEach(([pid, rPat])=>{
-       const safeId = safePatientId(pid);
-       const lPat = patientsDb.patients[safeId];
-       if(!lPat || new Date(rPat.updatedAt || 0) > new Date(lPat.updatedAt || 0)){
-        patientsDb.patients[safeId] = { ...rPat, id: safeId };
-       }
-      });
+   const colRef = fbDb.collection('clinicians').doc(currentUser.uid).collection('patients');
+   const snap = await colRef.get();
+   const remoteMap = {};
+   snap.forEach(docSnap => {
+    const rPat = docSnap.data();
+    if(rPat && rPat.id){
+     const safeId = safePatientId(rPat.id);
+     remoteMap[safeId] = { ...rPat, id: safeId };
+     const lPat = patientsDb.patients[safeId];
+     if(!lPat || new Date(rPat.updatedAt || 0) > new Date(lPat.updatedAt || 0)){
+      patientsDb.patients[safeId] = remoteMap[safeId];
      }
     }
-   }
-
-   saveLocalPatientsDb();
-   const jsonString = JSON.stringify(patientsDb, null, 2);
-   const putBody = {
-    message: `Sincronización clínica (${Object.keys(patientsDb.patients).length} pacientes) - ${new Date().toISOString()}`,
-    content: utf8ToBase64(jsonString),
-    branch: 'main'
-   };
-   if(existingSha) putBody.sha = existingSha;
-
-   const putResp = await fetch(apiUrl, {
-    method: 'PUT',
-    headers: { ...headers, 'Content-Type': 'application/json' },
-    body: JSON.stringify(putBody)
    });
 
-   if(!putResp.ok){
-    throw new Error('HTTP ' + putResp.status);
-   }
+   // Subir a Firestore cualquier expediente local nuevo o más reciente
+   const uploads = [];
+   Object.values(patientsDb.patients || {}).forEach(lPat => {
+    const safeId = safePatientId(lPat.id);
+    const rPat = remoteMap[safeId];
+    if(!rPat || new Date(lPat.updatedAt || 0) > new Date(rPat.updatedAt || 0)){
+     uploads.push(pushSinglePatientToFirestore(lPat));
+    }
+   });
+   if(uploads.length) await Promise.all(uploads);
 
+   saveLocalPatientsDb();
+   renderPatientsDashboardList();
    const now = new Date();
    const hh = String(now.getHours()).padStart(2,'0');
    const mm = String(now.getMinutes()).padStart(2,'0');
-   if(badge) badge.textContent = `☁️ En nube · ${hh}:${mm}`;
+   if(badge) badge.textContent = `☁️ Firebase · ${hh}:${mm}`;
+   const cloudKpi = document.getElementById('kpiCloudState');
    if(cloudKpi) cloudKpi.textContent = '✓ Sincronizado';
    const lastSyncEl = document.getElementById('kpiLastSyncTime');
-   if(lastSyncEl) lastSyncEl.textContent = `Última sincr.: hoy a las ${hh}:${mm}`;
-   window.logSecurityEvent('CLOUD_SYNC_OK', `Sincronizados ${Object.keys(patientsDb.patients).length} expediente(s)`);
-   renderPatientsDashboardList();
+   if(lastSyncEl) lastSyncEl.textContent = `Última sincr.: hoy ${hh}:${mm}`;
+   window.logSecurityEvent('CLOUD_SYNC_OK', `Firestore sincronizado (${Object.keys(patientsDb.patients).length} paciente(s))`);
+
    if(showNotification){
-    alert(`✓ Sincronización completada con tu nube privada en GitHub.\nPacientes almacenados: ${Object.keys(patientsDb.patients).length}`);
+    alert(`✓ Sincronización completada con Cloud Firestore.\nPacientes en la nube: ${Object.keys(patientsDb.patients).length}`);
    }
   } catch(err){
-   window.logSecurityEvent('CLOUD_SYNC_ERR', 'No fue posible sincronizar con GitHub (guardado local intacto)');
+   window.logSecurityEvent('CLOUD_SYNC_ERR', `Error sincronizando Firestore: ${err?.code || 'red'}`);
    if(badge) badge.textContent = '✓ Guardado local (sin red)';
-   if(cloudKpi) cloudKpi.textContent = 'Modo local';
    if(showNotification){
-    alert('Los datos quedaron guardados en tu dispositivo, pero no se pudo conectar con GitHub. Verifica tu conexión o la vigencia de tu token.');
+    alert('Los datos están guardados localmente, pero no se pudo conectar con Firestore. Verifica que hayas publicado las reglas en Firebase Console y tengas conexión a internet.');
    }
   } finally {
    isSyncingCloud = false;
    if(syncBtn){ syncBtn.disabled = false; syncBtn.textContent = '🔄 Sincronizar Nube'; }
   }
  };
+ window.syncPatientsWithGitHubCloud = window.syncPatientsWithFirebaseCloud;
 
  window.saveCurrentPatientAndSync = async function(notify = true){
   const saved = saveCurrentPatientToLocalDb();
@@ -7600,11 +7565,12 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
    window.tab('identificacion');
    return;
   }
-  await syncPatientsWithGitHubCloud(notify);
+  await syncPatientsWithFirebaseCloud(notify);
  };
 
  window.startNewPatientRecord = function(fromDashboard = false){
-  saveCurrentPatientToLocalDb();
+  const prev = saveCurrentPatientToLocalDb();
+  if(prev && currentUser) pushSinglePatientToFirestore(prev).catch(()=>{});
   currentPatientId = 'pac_' + Date.now();
   localStorage.setItem(ACTIVE_PATIENT_ID_KEY, currentPatientId);
 
@@ -7635,7 +7601,8 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
  };
 
  window.loadPatientFromDashboard = function(pid, targetTab = 'identificacion', addNewEvo = false){
-  saveCurrentPatientToLocalDb();
+  const prev = saveCurrentPatientToLocalDb();
+  if(prev && currentUser) pushSinglePatientToFirestore(prev).catch(()=>{});
   const safeId = safePatientId(pid);
   const pat = patientsDb.patients[safeId];
   if(!pat || !pat.recordState) return;
@@ -7681,7 +7648,9 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
   saveLocalPatientsDb();
   renderPatientsDashboardList();
   window.logSecurityEvent('PATIENT_DELETED', `Expediente eliminado: ${safeId}`);
-  if(githubToken) await syncPatientsWithGitHubCloud(false);
+  if(fbDb && currentUser){
+   await fbDb.collection('clinicians').doc(currentUser.uid).collection('patients').doc(safeId).delete().catch(()=>{});
+  }
  };
 
  window.togglePatientPdfMenu = function(pid){
@@ -7705,7 +7674,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
   const allPatients = Object.values(patientsDb.patients || {}).sort((a,b)=> new Date(b.updatedAt||0) - new Date(a.updatedAt||0));
   const pedCount = allPatients.filter(p=>p.profile==='pediatric').length;
   const adultCount = allPatients.filter(p=>p.profile==='adult').length;
-  const totalEvos = allPatients.reduce((acc,p)=> acc + (p.evoCount || 0), 0);
+  const totalEvos = allPatients.reduce((acc,p)=> acc + (Number(p.evoCount) || 0), 0);
 
   const setKpi = (id, v) => { const el = document.getElementById(id); if(el) el.textContent = v; };
   setKpi('kpiTotalPatients', String(allPatients.length));
@@ -7726,7 +7695,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
    container.innerHTML = `
     <div class="empty-patients-state">
      <h3>${allPatients.length ? 'No hay pacientes que coincidan con tu búsqueda' : 'Aún no tienes pacientes guardados'}</h3>
-     <p>${allPatients.length ? 'Prueba con otro nombre, documento o filtro.' : 'Crea tu primer expediente clínico o sincroniza con la nube para ver tus pacientes y sus documentos.'}</p>
+     <p>${allPatients.length ? 'Prueba con otro nombre, documento o filtro.' : 'Crea tu primer expediente clínico o sincroniza con Firebase para ver tus pacientes y sus documentos.'}</p>
      <button class="btn primary" onclick="startNewPatientRecord(true)" type="button" style="margin-top:10px">➕ Crear primer paciente</button>
     </div>`;
    return;
@@ -7833,16 +7802,39 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
   setTimeout(()=>URL.revokeObjectURL(url), 1500);
  };
 
- // Inicializar pantalla de seguridad al cargar el DOM
- document.addEventListener('DOMContentLoaded', () => {
+ // Inicializar Firebase Auth y escuchar estado de sesión al cargar
+ window.addEventListener('DOMContentLoaded', () => {
   updatePatientCountBadge();
-  const vault = getStoredVault();
-  document.getElementById('clinicalLoginOverlay').hidden = false;
-  if(vault){
-   switchSetupToLoginMode();
-  } else {
-   switchLoginToSetupMode();
+  const ready = initFirebaseServices();
+  if(!ready){
+   document.getElementById('clinicalLoginOverlay').hidden = false;
+   showAuthMessage('Cargando servicios de Firebase… Si el mensaje persiste, verifica tu conexión a internet.', false);
+   return;
   }
+  fbAuth.onAuthStateChanged(async user => {
+   if(user){
+    currentUser = user;
+    resetInactivityTimer();
+    document.getElementById('clinicalLoginOverlay').hidden = true;
+    const statusEl = document.getElementById('dashCloudStatusText');
+    if(statusEl) statusEl.textContent = `Nube segura Firebase · ${user.email || 'Sesión activa'}`;
+    window.logSecurityEvent('LOGIN_OK', `Sesión Firebase activa: ${user.email || user.uid}`);
+    startRealtimeFirestoreSync(user);
+    await syncPatientsWithFirebaseCloud(false);
+
+    const currentData = typeof getPatientData==='function' ? getPatientData() : {};
+    const hasCurrentPatient = !!(currentData.name || currentData.doc);
+    if(!hasCurrentPatient && Object.keys(patientsDb.patients || {}).length > 0){
+     openPatientsDashboard();
+    }
+   } else {
+    currentUser = null;
+    if(unsubscribePatients){ unsubscribePatients(); unsubscribePatients = null; }
+    document.getElementById('patientsDashboardModal').hidden = true;
+    document.getElementById('clinicalLoginOverlay').hidden = false;
+    switchAuthMode('login');
+   }
+  });
  });
 })();
 </script>
