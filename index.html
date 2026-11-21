@@ -663,7 +663,7 @@
 </div>
 </header>
 <div class="layout" id="mainLayout"><aside class="side" id="clinicalSidebar"><div class="side-header"><b>MÓDULOS CLÍNICOS</b><button aria-expanded="true" class="btn mobile-nav-toggle no-print" id="mobileNavToggle" onclick="toggleMobileNavGrid()" type="button">✕ Ocultar</button></div><nav id="nav"><button class="active" data-tab="identificacion">01 · Identificación</button><button data-tab="consentimiento">02 · Consentimiento</button><button data-tab="anamnesis">03 · Anamnesis</button><button data-tab="catalogo">04 · Catálogo de instrumentos</button><button data-tab="tamizaje">05 · Tamizaje</button><button data-tab="evaluacion">06 · Evaluación</button><button data-tab="plan">07 · Diagnóstico y plan</button><button data-tab="evoluciones">08 · Evoluciones</button><button data-tab="cierre">09 · Cierre y PDF</button></nav><div class="hint">Completa solo los apartados pertinentes. Los puntos verdes indican módulos con datos registrados.</div></aside><main>
-<div class="toolbar"><div class="toolbar-search no-print"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="quickFieldFilter" oninput="filterCurrentPanelFields(this.value)" placeholder="Buscar campo o apartado en este módulo…" type="search"/></div><div class="toolbar-actions"><button class="btn" onclick="exportBackupJson()" title="Descargar copia de seguridad del paciente en archivo .json" type="button">💾 Guardar</button><button class="btn" onclick="document.getElementById('restoreFileInput').click()" title="Cargar archivo .json previamente guardado" type="button">📂 Cargar</button><input accept=".json" hidden="" id="restoreFileInput" onchange="importBackupJson(event)" type="file"/><button class="btn btn-subtle-danger" onclick="clearForm()" type="button">🗑️ Limpiar</button><button class="btn" onclick="printCurrent()" type="button">🖨️ Imprimir módulo</button><button class="btn primary" onclick="printAll()" type="button">📄 PDF consolidado</button></div></div>
+<div class="toolbar"><div class="toolbar-search no-print"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="quickFieldFilter" oninput="filterCurrentPanelFields(this.value)" placeholder="Buscar campo o apartado en este módulo…" type="search"/></div><div class="toolbar-actions"><button class="btn" onclick="saveCurrentPatientAndSync(true)" title="Guardar expediente actual en la nube" type="button">💾 Guardar</button><button class="btn" onclick="openPatientsDashboard()" title="Abrir o cargar un paciente guardado en la nube" type="button">📂 Mis Pacientes</button><input accept=".json" hidden="" id="restoreFileInput" onchange="importBackupJson(event)" type="file"/><button class="btn btn-subtle-danger" onclick="clearForm()" type="button">🗑️ Limpiar</button><button class="btn" onclick="printCurrent()" type="button">🖨️ Imprimir módulo</button><button class="btn primary" onclick="printAll()" type="button">📄 PDF consolidado</button></div></div>
 <section class="panel active" id="identificacion"><h2>REGISTRO DE HISTORIA CLÍNICA FONOAUDIOLÓGICA</h2><div class="sub">Identificación del usuario</div><p class="intro">Datos administrativos y contexto de atención. La información se comparte entre los módulos mientras esta página permanezca abierta.</p><div class="sub">Datos personales</div><div class="grid three">
 <div class="field"><label>Nombres y apellidos</label><input data-share="nombre"/></div><div class="field"><label>Tipo de documento</label><select data-share="tipo" id="documentType" onchange="updatePediatricFields()"><option></option><option>RC</option><option>TI</option><option>CC</option><option>CE</option><option>PPT</option><option>Pasaporte</option><option>Otro</option></select></div><div class="field"><label>Número de documento</label><input data-share="doc"/></div><div class="field full"><div class="checks"><label><input id="pediatricOverride" onchange="updatePediatricFields()" type="checkbox"/> Paciente menor de edad con documento diferente de RC/TI: mostrar antecedentes pediátricos</label></div></div>
 <div class="field"><label>Fecha de nacimiento</label><input id="nacimiento" oninput="age()" type="date"/></div><div class="field"><label>Edad calculada</label><input id="edad" readonly=""/></div><div class="field"><label>Sexo (si pertinente)</label><select><option></option><option>Femenino</option><option>Masculino</option><option>Intersexual</option><option>No informa</option></select></div><div class="field"><label>Identidad de género (opcional)</label><input/></div><div class="field"><label>Escolaridad</label><select><option value="">Seleccione</option><option>Sin escolaridad</option><option>Preescolar</option><option>Primaria incompleta</option><option>Primaria completa</option><option>Secundaria incompleta</option><option>Bachillerato completo</option><option>Técnico</option><option>Tecnológico</option><option>Universitario</option><option>Posgrado</option><option>No aplica</option><option>No informa</option></select></div><div class="field"><label>Ocupación / actividad habitual</label><select><option value="">Seleccione</option><option>Estudiante</option><option>Empleado(a)</option><option>Independiente</option><option>Labores del hogar</option><option>Cuidador(a)</option><option>Pensionado(a)</option><option>Desempleado(a)</option><option>Primera infancia / no aplica</option><option>Otra</option></select></div><div class="field"><label>EPS / aseguradora</label><select data-share="eps"><option value="">Seleccione EPS / aseguradora</option><option>Aliansalud</option><option>Asmet Salud</option><option>Capital Salud</option><option>Compensar</option><option>Coosalud</option><option>Famisanar</option><option>Salud Total</option><option>Sanitas</option><option>Savia Salud</option><option>Servicio Occidental de Salud (SOS)</option><option>Nueva EPS</option><option>Salud Mía</option><option>Fondo Nacional de Salud de las Personas Privadas de la Libertad</option><option>Régimen especial / excepción</option><option>Particular</option><option>No asegurado</option><option>Otra</option></select></div><div class="field"><label>Régimen</label><select><option></option><option>Contributivo</option><option>Subsidiado</option><option>Especial / excepción</option><option>No asegurado</option><option>Otro</option></select></div><div class="field"><label>Fecha de apertura / valoración</label><input type="date"/></div></div>
@@ -6963,7 +6963,8 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
      <button class="filter-pill" data-filter="evolutions" onclick="setPatientListFilter('evolutions')" type="button">Con evoluciones</button>
     </div>
     <div style="display:flex;gap:6px;flex-wrap:wrap">
-     <button class="btn" onclick="exportAllPatientsDatabase()" title="Descargar copia de todos los pacientes en un archivo JSON" type="button">📤 Exportar todo</button>
+     <button class="btn" onclick="document.getElementById('restoreFileInput').click()" title="Importar un respaldo individual en formato .json" type="button">📥 Importar respaldo</button>
+     <button class="btn" onclick="exportAllPatientsDatabase()" title="Descargar copia de todos los pacientes en un archivo JSON" type="button">📤 Exportar respaldo</button>
     </div>
    </div>
 
@@ -7572,13 +7573,13 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
    window.logSecurityEvent('CLOUD_SYNC_OK', `Firestore sincronizado (${Object.keys(patientsDb.patients).length} paciente(s))`);
 
    if(showNotification){
-    alert(`✓ Sincronización completada.\nPacientes en la nube: ${Object.keys(patientsDb.patients).length}`);
+    showClinicalToast(`✓ Guardado en la nube (${Object.keys(patientsDb.patients).length} paciente(s))`);
    }
   } catch(err){
    window.logSecurityEvent('CLOUD_SYNC_ERR', `Error de sincronización (${err?.code || 'red'})`);
    if(badge) badge.textContent = '✓ Guardado local (sin red)';
    if(showNotification){
-    alert('Los datos están guardados localmente, pero no se pudo conectar con la nube en este momento. Verifica tu conexión a internet.');
+    showClinicalToast('Guardado en este dispositivo (sin conexión a la nube en este momento).', true);
    }
   } finally {
    isSyncingCloud = false;
@@ -7587,10 +7588,27 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
  };
  window.syncPatientsWithGitHubCloud = window.syncPatientsWithFirebaseCloud;
 
+ let toastTimer = null;
+ window.showClinicalToast = function(message, isWarning = false){
+  let el = document.getElementById('clinicalToast');
+  if(!el){
+   el = document.createElement('div');
+   el.id = 'clinicalToast';
+   el.className = 'no-print';
+   el.style.cssText = 'position:fixed;right:18px;bottom:86px;z-index:11000;max-width:340px;padding:11px 16px;border-radius:12px;font-size:13px;font-weight:600;color:#fff;box-shadow:0 12px 28px rgba(15,41,66,0.28);transition:opacity .25s ease,transform .25s ease;opacity:0;transform:translateY(8px);pointer-events:none;';
+   document.body.appendChild(el);
+  }
+  el.style.background = isWarning ? '#b45309' : 'linear-gradient(135deg,#0f2942,#0d9488)';
+  el.textContent = message;
+  requestAnimationFrame(()=>{ el.style.opacity = '1'; el.style.transform = 'translateY(0)'; });
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>{ el.style.opacity = '0'; el.style.transform = 'translateY(8px)'; }, 3000);
+ };
+
  window.saveCurrentPatientAndSync = async function(notify = true){
   const saved = saveCurrentPatientToLocalDb();
   if(!saved){
-   alert('Ingresa al menos el nombre o número de documento del paciente en «01 · Identificación» antes de guardar el expediente.');
+   showClinicalToast('Ingresa primero el nombre o documento del paciente en «01 · Identificación».', true);
    window.tab('identificacion');
    return;
   }
