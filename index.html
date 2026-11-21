@@ -7811,14 +7811,33 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
    showAuthMessage('Cargando servicios de Firebase… Si el mensaje persiste, verifica tu conexión a internet.', false);
    return;
   }
+  const AUTHORIZED_EMAIL = 'karenliseth.rv@gmail.com';
   fbAuth.onAuthStateChanged(async user => {
    if(user){
+    const userEmail = (user.email || '').trim().toLowerCase();
+    if(userEmail !== AUTHORIZED_EMAIL){
+     window.logSecurityEvent('UNAUTHORIZED_EMAIL_ATTEMPT', `Acceso denegado a correo no autorizado: ${userEmail || user.uid}`);
+     await fbAuth.signOut().catch(()=>{});
+     currentUser = null;
+     document.getElementById('clinicalLoginOverlay').hidden = false;
+     showAuthMessage('Acceso denegado: esta aplicación clínica está restringida exclusivamente a la profesional autorizada.', true);
+     return;
+    }
+    if(!user.emailVerified){
+     await user.sendEmailVerification().catch(()=>{});
+     window.logSecurityEvent('UNVERIFIED_EMAIL_BLOCKED', `Se envió enlace de verificación a ${userEmail}`);
+     await fbAuth.signOut().catch(()=>{});
+     currentUser = null;
+     document.getElementById('clinicalLoginOverlay').hidden = false;
+     showAuthMessage('Verifica primero tu correo electrónico (revisa tu bandeja de entrada) o usa «Continuar con Google» para acceder de inmediato.', false);
+     return;
+    }
     currentUser = user;
     resetInactivityTimer();
     document.getElementById('clinicalLoginOverlay').hidden = true;
     const statusEl = document.getElementById('dashCloudStatusText');
     if(statusEl) statusEl.textContent = `Nube segura Firebase · ${user.email || 'Sesión activa'}`;
-    window.logSecurityEvent('LOGIN_OK', `Sesión Firebase activa: ${user.email || user.uid}`);
+    window.logSecurityEvent('LOGIN_OK', `Sesión Firebase verificada: ${user.email || user.uid}`);
     startRealtimeFirestoreSync(user);
     await syncPatientsWithFirebaseCloud(false);
 
