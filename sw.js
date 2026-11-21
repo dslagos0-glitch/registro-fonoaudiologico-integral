@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fono-registro-v81-firebase1';
+const CACHE_NAME = 'fono-registro-v81-firebase2';
 const ASSETS = [
   './',
   './index.html',
