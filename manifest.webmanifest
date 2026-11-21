@@ -1,6 +1,6 @@
 {
-  "name": "Registro Fonoaudiológico Integral",
-  "short_name": "FonoRegistro",
+  "name": "Fonosfera · Registro Fonoaudiológico Integral",
+  "short_name": "Fonosfera",
   "description": "Historia clínica, tamizaje, evaluación, plan de intervención y evolución fonoaudiológica adaptable a celulares, tablets y escritorio.",
   "start_url": "./index.html",
   "display": "standalone",
