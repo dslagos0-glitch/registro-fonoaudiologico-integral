@@ -6840,7 +6840,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
    </div>
    <div>
     <h2 id="loginModalTitle">FonoRegistro · Acceso Clínico</h2>
-    <p id="loginModalSubtitle">Nube segura Firebase · Sincronización PC, Tablet y Celular</p>
+    <p id="loginModalSubtitle">Registro Fonoaudiológico Integral</p>
    </div>
   </div>
   <div class="login-clinician-box">
@@ -6908,10 +6908,6 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
     <button class="btn" onclick="switchAuthMode('login')" style="font-size:12px;padding:6px 10px" type="button">← Ya tengo cuenta, iniciar sesión</button>
    </div>
   </form>
-
-  <div class="login-footer-note">
-   Protegido con <strong>Firebase Authentication</strong> (contraseñas con hash en servidor y enlaces de recuperación con caducidad) y <strong>Cloud Firestore</strong> con reglas estrictas de aislamiento por usuario.
-  </div>
  </div>
 </div>
 
@@ -6921,7 +6917,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
   <div class="dashboard-header">
    <div>
     <h2 id="dashTitle">🗂️ Mis Pacientes y Documentos Clínicos</h2>
-    <p id="dashCloudStatusText">Nube segura Firebase · Sincronización en tiempo real</p>
+    <p id="dashCloudStatusText">Sincronización en la nube activa</p>
    </div>
    <div class="dashboard-header-actions">
     <button class="btn top-nav-btn" id="btnToggleSecurityLog" onclick="toggleSecurityAuditPanel()" type="button">🛡️ Auditoría de Seguridad</button>
@@ -6950,13 +6946,13 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
     <div class="kpi-card">
      <span>Respaldo en la Nube</span>
      <strong id="kpiCloudState" style="font-size:16px;margin-top:8px">Conectado</strong>
-     <small id="kpiLastSyncTime">Cloud Firestore activo</small>
+     <small id="kpiLastSyncTime">Sincronización en la nube</small>
     </div>
    </div>
 
    <div id="securityAuditPanel" hidden="" style="background:#fff;border:1px solid #cbd5e1;border-left:4px solid #0f2942;border-radius:12px;padding:14px 16px;margin-bottom:16px">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px">
-     <strong style="color:#0f2942;font-size:14px">🛡️ Registro de Auditoría Inmutable (Firestore + Local · Últimos 50 eventos)</strong>
+     <strong style="color:#0f2942;font-size:14px">🛡️ Registro de actividad (Últimos 50 eventos)</strong>
      <button class="btn" onclick="toggleSecurityAuditPanel()" style="font-size:12px;padding:5px 10px" type="button">Cerrar</button>
     </div>
     <div id="securityAuditList" style="max-height:200px;overflow-y:auto;font-size:12px;font-family:ui-monospace,Consolas,monospace;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px"></div>
@@ -7190,13 +7186,13 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
    'auth/invalid-email': 'El formato del correo electrónico no es válido.',
    'auth/too-many-requests': 'Demasiados intentos en el servidor. Espera unos minutos antes de reintentar.',
    'auth/popup-closed-by-user': 'Se cerró la ventana de inicio de sesión con Google.',
-   'auth/unauthorized-domain': 'Este dominio aún no está autorizado en Firebase Console (Authentication → Dominios autorizados).'
+   'auth/unauthorized-domain': 'Este dominio no está autorizado para iniciar sesión.'
   };
   return map[code] || 'No fue posible autenticar en este momento. Verifica tu conexión e intenta nuevamente.';
  }
 
  window.handleFirebaseGoogleLogin = async function(){
-  if(!initFirebaseServices()){ showAuthMessage('No se pudo cargar Firebase. Verifica tu conexión a internet.', true); return; }
+  if(!initFirebaseServices()){ showAuthMessage('No se pudo conectar con el servicio de acceso. Verifica tu conexión a internet.', true); return; }
   if(!checkLoginRateLimit()) return;
   const btn = document.getElementById('btnGoogleSignIn');
   try {
@@ -7219,13 +7215,13 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
 
  window.handleFirebaseEmailLogin = async function(event){
   event.preventDefault();
-  if(!initFirebaseServices()){ showAuthMessage('No se pudo cargar Firebase. Verifica tu conexión a internet.', true); return; }
+  if(!initFirebaseServices()){ showAuthMessage('No se pudo conectar con el servicio de acceso. Verifica tu conexión a internet.', true); return; }
   if(!checkLoginRateLimit()) return;
   const email = (document.getElementById('loginEmail')?.value || '').trim();
   const password = (document.getElementById('loginPassword')?.value || '');
   const submitBtn = document.getElementById('loginSubmitBtn');
   try {
-   if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = '⏳ Verificando en Firebase…'; }
+   if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = '⏳ Verificando credenciales…'; }
    await fbAuth.signInWithEmailAndPassword(email, password);
    saveRateLimitState({ fails: 0, lockUntil: 0 });
    document.getElementById('loginPassword').value = '';
@@ -7239,7 +7235,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
 
  window.handleFirebaseEmailRegister = async function(event){
   event.preventDefault();
-  if(!initFirebaseServices()){ showAuthMessage('No se pudo cargar Firebase. Verifica tu conexión a internet.', true); return; }
+  if(!initFirebaseServices()){ showAuthMessage('No se pudo conectar con el servicio de acceso. Verifica tu conexión a internet.', true); return; }
   const email = (document.getElementById('regEmail')?.value || '').trim();
   const password = (document.getElementById('regPassword')?.value || '');
   const confirmPw = (document.getElementById('regPasswordConfirm')?.value || '');
@@ -7261,7 +7257,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
  };
 
  window.handleFirebasePasswordReset = async function(){
-  if(!initFirebaseServices()){ showAuthMessage('No se pudo cargar Firebase. Verifica tu conexión a internet.', true); return; }
+  if(!initFirebaseServices()){ showAuthMessage('No se pudo conectar con el servicio de acceso. Verifica tu conexión a internet.', true); return; }
   const email = (document.getElementById('loginEmail')?.value || '').trim();
   if(!email){
    showAuthMessage('Escribe primero tu correo electrónico profesional arriba y luego pulsa «Recuperar contraseña».', true);
@@ -7269,15 +7265,15 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
   }
   try {
    await fbAuth.sendPasswordResetEmail(email);
-   window.logSecurityEvent('PASSWORD_RESET_SENT', `Enlace de recuperación con caducidad enviado a ${email}`);
-   showAuthMessage(`Se envió un enlace seguro de recuperación (con caducidad automática) a ${email}. Revisa tu bandeja de entrada o spam.`, false);
+   window.logSecurityEvent('PASSWORD_RESET_SENT', `Enlace de recuperación enviado a ${email}`);
+   showAuthMessage(`Se envió un enlace de recuperación a ${email}. Revisa tu bandeja de entrada o spam.`, false);
   } catch(err){
    showAuthMessage(mapFirebaseAuthError(err?.code), true);
   }
  };
 
  window.logoutClinicalSession = async function(){
-  if(!confirm('¿Cerrar tu sesión clínica en este dispositivo? Tus expedientes en Firebase permanecerán seguros.'))return;
+  if(!confirm('¿Cerrar tu sesión clínica en este dispositivo? Tus expedientes en la nube permanecerán guardados.'))return;
   saveCurrentPatientToLocalDb();
   if(currentUser){
    await pushSinglePatientToFirestore(patientsDb.patients[currentPatientId]).catch(()=>{});
@@ -7439,7 +7435,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
       const hh = String(now.getHours()).padStart(2,'0');
       const mm = String(now.getMinutes()).padStart(2,'0');
       const badge = document.getElementById('autosaveBadge');
-      if(badge) badge.textContent = `☁️ Firebase · ${hh}:${mm}`;
+      if(badge) badge.textContent = `☁️ En nube · ${hh}:${mm}`;
      }).catch(()=>{});
     }, 3500);
    }
@@ -7472,7 +7468,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
    const hh = String(now.getHours()).padStart(2,'0');
    const mm = String(now.getMinutes()).padStart(2,'0');
    const badge = document.getElementById('autosaveBadge');
-   if(badge) badge.textContent = `☁️ Firebase · ${hh}:${mm}`;
+   if(badge) badge.textContent = `☁️ En nube · ${hh}:${mm}`;
    const cloudKpi = document.getElementById('kpiCloudState');
    if(cloudKpi) cloudKpi.textContent = '✓ En tiempo real';
    const lastSyncEl = document.getElementById('kpiLastSyncTime');
@@ -7487,7 +7483,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
  window.syncPatientsWithFirebaseCloud = async function(showNotification = false){
   saveCurrentPatientToLocalDb();
   if(!fbDb || !currentUser){
-   if(showNotification) alert('Inicia sesión primero para sincronizar con Firebase.');
+   if(showNotification) alert('Inicia sesión primero para sincronizar con la nube.');
    return;
   }
   if(showNotification && Date.now() - lastManualSyncTs < MANUAL_SYNC_COOLDOWN_MS){
@@ -7500,7 +7496,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
 
   const badge = document.getElementById('autosaveBadge');
   const syncBtn = document.getElementById('btnSyncCloudNow');
-  if(badge) badge.textContent = '☁️ Sincronizando Firebase…';
+  if(badge) badge.textContent = '☁️ Sincronizando…';
   if(syncBtn){ syncBtn.disabled = true; syncBtn.textContent = '⏳ Sincronizando…'; }
 
   try {
@@ -7535,7 +7531,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
    const now = new Date();
    const hh = String(now.getHours()).padStart(2,'0');
    const mm = String(now.getMinutes()).padStart(2,'0');
-   if(badge) badge.textContent = `☁️ Firebase · ${hh}:${mm}`;
+   if(badge) badge.textContent = `☁️ En nube · ${hh}:${mm}`;
    const cloudKpi = document.getElementById('kpiCloudState');
    if(cloudKpi) cloudKpi.textContent = '✓ Sincronizado';
    const lastSyncEl = document.getElementById('kpiLastSyncTime');
@@ -7543,13 +7539,13 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
    window.logSecurityEvent('CLOUD_SYNC_OK', `Firestore sincronizado (${Object.keys(patientsDb.patients).length} paciente(s))`);
 
    if(showNotification){
-    alert(`✓ Sincronización completada con Cloud Firestore.\nPacientes en la nube: ${Object.keys(patientsDb.patients).length}`);
+    alert(`✓ Sincronización completada.\nPacientes en la nube: ${Object.keys(patientsDb.patients).length}`);
    }
   } catch(err){
-   window.logSecurityEvent('CLOUD_SYNC_ERR', `Error sincronizando Firestore: ${err?.code || 'red'}`);
+   window.logSecurityEvent('CLOUD_SYNC_ERR', `Error de sincronización (${err?.code || 'red'})`);
    if(badge) badge.textContent = '✓ Guardado local (sin red)';
    if(showNotification){
-    alert('Los datos están guardados localmente, pero no se pudo conectar con Firestore. Verifica que hayas publicado las reglas en Firebase Console y tengas conexión a internet.');
+    alert('Los datos están guardados localmente, pero no se pudo conectar con la nube en este momento. Verifica tu conexión a internet.');
    }
   } finally {
    isSyncingCloud = false;
@@ -7695,7 +7691,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
    container.innerHTML = `
     <div class="empty-patients-state">
      <h3>${allPatients.length ? 'No hay pacientes que coincidan con tu búsqueda' : 'Aún no tienes pacientes guardados'}</h3>
-     <p>${allPatients.length ? 'Prueba con otro nombre, documento o filtro.' : 'Crea tu primer expediente clínico o sincroniza con Firebase para ver tus pacientes y sus documentos.'}</p>
+     <p>${allPatients.length ? 'Prueba con otro nombre, documento o filtro.' : 'Crea tu primer expediente clínico o sincroniza con la nube para ver tus pacientes y sus documentos.'}</p>
      <button class="btn primary" onclick="startNewPatientRecord(true)" type="button" style="margin-top:10px">➕ Crear primer paciente</button>
     </div>`;
    return;
@@ -7808,7 +7804,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
   const ready = initFirebaseServices();
   if(!ready){
    document.getElementById('clinicalLoginOverlay').hidden = false;
-   showAuthMessage('Cargando servicios de Firebase… Si el mensaje persiste, verifica tu conexión a internet.', false);
+   showAuthMessage('Cargando servicios… Si el mensaje persiste, verifica tu conexión a internet.', false);
    return;
   }
   const AUTHORIZED_EMAIL = 'karenliseth.rv@gmail.com';
@@ -7836,7 +7832,7 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
     resetInactivityTimer();
     document.getElementById('clinicalLoginOverlay').hidden = true;
     const statusEl = document.getElementById('dashCloudStatusText');
-    if(statusEl) statusEl.textContent = `Nube segura Firebase · ${user.email || 'Sesión activa'}`;
+    if(statusEl) statusEl.textContent = `Sesión activa · ${user.email || 'Conectado'}`;
     window.logSecurityEvent('LOGIN_OK', `Sesión Firebase verificada: ${user.email || user.uid}`);
     startRealtimeFirestoreSync(user);
     await syncPatientsWithFirebaseCloud(false);
