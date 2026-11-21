@@ -1,16 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#173d56"/>
-      <stop offset="100%" stop-color="#168b91"/>
-    </linearGradient>
-  </defs>
-  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
-  <g fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Sound waves / Speech & Hearing icon -->
-    <path d="M150 196a68 68 0 0 1 136 0c0 46-54 68-54 112"/>
-    <circle cx="218" cy="356" r="6" fill="#ffffff"/>
-    <path d="M326 178a95 95 0 0 1 0 156"/>
-    <path d="M368 140a148 148 0 0 1 0 232"/>
+  <rect width="512" height="512" rx="112" fill="#0F2942"/>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- Barra 1 -->
+    <line x1="94" y1="224" x2="94" y2="288" stroke="#0D9488" stroke-width="28"/>
+    <!-- Barra 2 -->
+    <line x1="146" y1="184" x2="146" y2="328" stroke="#0F9D91" stroke-width="28"/>
+    <!-- Barra 3 -->
+    <line x1="198" y1="148" x2="198" y2="364" stroke="#18B2A5" stroke-width="28"/>
+    <!-- Barra 4 (central más alta) -->
+    <line x1="250" y1="112" x2="250" y2="394" stroke="#7AE8D2" stroke-width="28"/>
+    <!-- Barras 5 y 6 conectadas como burbuja de habla -->
+    <path d="M302 152 L302 368 L368 408 L354 352 L354 190" fill="none" stroke="#85EFE0" stroke-width="26"/>
+    <!-- Barra 7 (derecha corta) -->
+    <line x1="410" y1="224" x2="410" y2="288" stroke="#85EFE0" stroke-width="28"/>
   </g>
 </svg>
