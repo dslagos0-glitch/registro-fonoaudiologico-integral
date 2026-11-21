@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fono-registro-v82-fonosfera1';
+const CACHE_NAME = 'fono-registro-v82-fonosfera2';
 const ASSETS = [
   './',
   './index.html',
