@@ -7115,14 +7115,44 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
   if(!panel.hidden) renderSecurityAuditList();
  };
 
+ // Borrado seguro de caché local y formulario al cerrar sesión (protección física del dispositivo)
+ function wipeLocalClinicalDataForLogout(){
+  try {
+   localStorage.removeItem(DB_LOCAL_KEY);
+   localStorage.removeItem(ACTIVE_PATIENT_ID_KEY);
+   localStorage.removeItem('fono_historia_clinica_v78_state');
+  } catch(e){}
+  patientsDb = { version: 'V80', updatedAt: new Date().toISOString(), patients: {} };
+  currentPatientId = '';
+  document.querySelectorAll('main > .panel input, main > .panel textarea, main > .panel select').forEach(x=>{
+   if(x.type==='checkbox'||x.type==='radio') x.checked = false;
+   else if(x.id==='edad') x.value = '';
+   else if(x.tagName==='SELECT') x.selectedIndex = 0;
+   else x.value = '';
+  });
+  const evList = document.getElementById('evolutionList');
+  if(evList) evList.innerHTML = '';
+  const grid = document.getElementById('patientsGridContainer');
+  if(grid) grid.innerHTML = '';
+  ['pcbName','pcbDoc','pcbAge','pcbEps'].forEach(id=>{
+   const el = document.getElementById(id);
+   if(el) el.textContent = id==='pcbName' ? 'Sin registrar' : '—';
+  });
+  updatePatientCountBadge();
+ }
+
  // Bloqueo automático por inactividad (30 minutos)
  function resetInactivityTimer(){
   if(!currentUser) return;
   clearTimeout(inactivityTimer);
-  inactivityTimer = setTimeout(()=>{
+  inactivityTimer = setTimeout(async ()=>{
    if(!currentUser || !fbAuth) return;
-   saveCurrentPatientToLocalDb();
-   window.logSecurityEvent('INACTIVITY_LOCK', 'Sesión cerrada automáticamente tras 30 minutos de inactividad');
+   const saved = saveCurrentPatientToLocalDb();
+   if(saved){
+    await pushSinglePatientToFirestore(saved).catch(()=>{});
+   }
+   window.logSecurityEvent('INACTIVITY_LOCK', 'Sesión cerrada y caché local borrada tras 30 minutos de inactividad');
+   wipeLocalClinicalDataForLogout();
    fbAuth.signOut().catch(()=>{});
   }, INACTIVITY_TIMEOUT_MS);
  }
@@ -7266,14 +7296,23 @@ document.addEventListener('DOMContentLoaded',()=>{setupObjectiveBank();setupEval
  };
 
  window.logoutClinicalSession = async function(){
-  if(!confirm('¿Cerrar tu sesión clínica en este dispositivo? Tus expedientes en la nube permanecerán guardados.'))return;
-  saveCurrentPatientToLocalDb();
+  if(!confirm('¿Cerrar tu sesión clínica en este dispositivo? Se sincronizará tu expediente en la nube y se limpiará la caché local de este equipo para mayor privacidad.'))return;
+  const saved = saveCurrentPatientToLocalDb();
+  if(currentUser && saved){
+   try {
+    await pushSinglePatientToFirestore(saved);
+   } catch(err){
+    if(!confirm('No se pudo confirmar la sincronización con la nube en este momento (posible falta de internet). ¿Deseas cerrar sesión y borrar la caché local de todas formas?')){
+     return;
+    }
+   }
+  }
   if(currentUser){
-   await pushSinglePatientToFirestore(patientsDb.patients[currentPatientId]).catch(()=>{});
-   window.logSecurityEvent('LOGOUT', `Sesión cerrada por ${currentUser.email || currentUser.uid}`);
+   window.logSecurityEvent('LOGOUT', `Sesión cerrada y caché local eliminada por ${currentUser.email || currentUser.uid}`);
   }
   clearTimeout(inactivityTimer);
   if(unsubscribePatients){ unsubscribePatients(); unsubscribePatients = null; }
+  wipeLocalClinicalDataForLogout();
   if(fbAuth){ await fbAuth.signOut().catch(()=>{}); }
   currentUser = null;
   document.body.classList.add('auth-locked');
